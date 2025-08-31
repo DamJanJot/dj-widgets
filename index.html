@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DJ Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg:#0f0f10;
+        --panel:#1b1b1e;
+        --muted:#9aa0a6;
+        --text:#e6e6e6;
+        --primary:#6f6df4;
+        --card:#151517;
+        --border:#2a2a2e;
+      }
+      *{box-sizing:border-box}
+      html,body,#root{height:100%}
+      body{margin:0;background:radial-gradient(1200px 700px at 20% -10%, #232332 0%, #121217 45%, #0b0b0d 100%);color:var(--text);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;}
+      a{color:inherit;text-decoration:none}
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
