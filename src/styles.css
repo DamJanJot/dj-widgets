@@ -1,16 +1,85 @@
+/* === Kolory / tło === */
+:root {
+  --bg:#0f0f10;
+  --panel:#1b1b1e;
+  --muted:#9aa0a6;
+  --text:#e6e6e6;
+  --primary:#6f6df4;
+  --card:#151517;
+  --border:#2a2a2e;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  background:radial-gradient(1200px 700px at 20% -10%, #232332 0%, #121217 45%, #0b0b0d 100%);
+  color:var(--text);
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+a{color:inherit;text-decoration:none}
 
-/* Minimal, dark UI matching screenshots */
-.container{display:grid;grid-template-columns:260px 1fr;min-height:100%}
-.sidebar{background:rgba(0,0,0,.35);backdrop-filter:saturate(120%) blur(10px);border-right:1px solid var(--border);padding:16px;display:flex;flex-direction:column;gap:12px}
+/* === Layout === */
+.container{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  min-height:100%;
+}
+.sidebar{
+  background:rgba(0,0,0,.35);
+  backdrop-filter:saturate(120%) blur(10px);
+  border-right:1px solid var(--border);
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700}
 .brand .badge{background:var(--primary);color:white;border-radius:10px;padding:6px 10px;font-weight:800}
+
+
 .nav{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .nav a{padding:10px 12px;border-radius:10px;color:var(--text);border:1px solid transparent}
 .nav a.active,.nav a:hover{background:var(--panel);border-color:var(--border)}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
 .content{padding:20px}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:110px;gap:16px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 12px 20px rgba(0,0,0,.25)}
+
+
+
+
+.nav a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:10px;
+  color:var(--text);
+  border:1px solid transparent;
+}
+.nav a span { transition:opacity .2s, transform .2s; }
+
+.container.sidebar-closed .nav a span{
+  opacity:0;
+  transform:translateX(-8px);
+  pointer-events:none;
+  width:0;
+}
+
+
+
+/* === Grid Kafli === */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:110px;
+  gap:16px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 12px 20px rgba(0,0,0,.25)
+}
 .card h3{margin:0 0 10px;font-size:16px}
 .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace}
 .kpi{font-size:32px;font-weight:700}
@@ -20,9 +89,142 @@
 .row{display:flex;align-items:center;justify-content:space-between}
 .badge{background:#2a2940;color:#d7d6ff;padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid #3e3c74}
 .small{font-size:12px;color:var(--muted)}
-/* card spans */
 .span-4{grid-column:span 4}
 .span-6{grid-column:span 6}
 .span-8{grid-column:span 8}
 .span-12{grid-column:span 12}
 .row-2{grid-row:span 2}
+
+/* --- domyślne rozpięcia dla naszych kafli --- */
+.card:nth-child(1), .card:nth-child(2), .card:nth-child(3){ grid-column:span 4; grid-row:span 2; }
+.card{ grid-column:span 4; }
+
+/* === Responsywność === */
+
+/* <= 1200px: 8 kolumn */
+@media (max-width: 1200px){
+  .grid{ grid-template-columns:repeat(8,1fr); }
+  .card{ grid-column:span 4; }
+  .card.row-2{ grid-row:span 2; }
+}
+
+/* <= 900px: 6 kolumn + węższy sidebar */
+@media (max-width: 900px){
+  .container{ grid-template-columns:200px 1fr; }
+  .grid{ grid-template-columns:repeat(6,1fr); }
+  .card{ grid-column:span 6; }      /* pojedyncza kolumna na mniejszych laptopach */
+}
+
+/* <= 640px: 1 kolumna, sidebar zwęża się */
+@media (max-width: 640px){
+  .container{ grid-template-columns:72px 1fr; }
+  .sidebar .nav a{ padding:8px 10px; }
+  .brand span:last-child{ display:none; }   /* zostawiamy tylko badge */
+  .grid{ grid-template-columns:repeat(1,1fr); grid-auto-rows:auto; }
+  .card{ grid-column:span 1; }
+}
+
+
+
+/* --- Sidebar off-canvas & collapsed --- */
+.sidebar{ transition: transform .22s ease, width .22s ease; }
+.container.sidebar-closed .sidebar { /* desktop collapsed width */
+  width:72px;
+}
+.container.sidebar-closed .sidebar .brand span:last-child{ display:none; }
+.container.sidebar-closed .nav a{ padding:8px 10px; }
+.container.sidebar-closed .nav a::after{ content: attr(data-tip); }
+
+/* Mobile (<=900px) – wysuwany z lewej */
+@media (max-width: 900px){
+  .container{
+    grid-template-columns: 1fr; /* główna kolumna */
+  }
+  .sidebar{
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 260px;
+    transform: translateX(-100%);
+    z-index: 40;
+  }
+  .sidebar.open{ transform: translateX(0); }
+  .sidebar.collapsed{ transform: translateX(-100%); }
+  main{ position: relative; z-index: 10; }
+  .overlay{
+    position: fixed; inset:0;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(1px);
+    z-index: 30;
+  }
+}
+
+/* --- Hamburger --- */
+.hamburger{
+  appearance:none; outline:none; border:none;
+  background:transparent; padding:8px; margin:-8px 8px -8px 0;
+  display:flex; flex-direction:column; gap:4px; cursor:pointer;
+}
+.hamburger span{
+  width:22px; height:2px; background:var(--text); display:block; border-radius:2px;
+}
+
+/* --- Grid responsywnie (z poprzedniej wersji) --- */
+@media (max-width: 1200px){
+  .grid{ grid-template-columns:repeat(8,1fr); }
+}
+@media (max-width: 900px){
+  .grid{ grid-template-columns:repeat(6,1fr); }
+  .card{ grid-column:span 6; }
+}
+@media (max-width: 640px){
+  .grid{ grid-template-columns:1fr; grid-auto-rows:auto; }
+  .card{ grid-column:1 / -1; }
+}
+
+
+
+.container.sidebar-closed{
+  grid-template-columns:72px 1fr;
+}
+
+
+
+
+/* === Floating edge toggle (desktop) === */
+.edge-toggle{
+  position: fixed;
+  top: 96px;                 /* wysokość — możesz dostroić */
+  left: 248px;               /* 260 (sidebar) - 12px marginesu */
+  z-index: 50;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: left .22s ease, background .2s ease, border-color .2s ease, transform .08s ease-in-out;
+}
+.edge-toggle:hover{ background: #1f1f23; border-color: #3a3a40; }
+.edge-toggle:active{ transform: scale(.97); }
+
+/* mała „strzałka” z CSS */
+.edge-arrow{
+  width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent;
+}
+.edge-arrow.left{  border-right: 8px solid var(--text); }
+.edge-arrow.right{ border-left: 8px solid var(--text); }
+
+/* gdy sidebar zwinięty – przycisk przesuwamy bliżej krawędzi */
+.container.sidebar-closed .edge-toggle{
+  left: 60px;                /* 72 (collapsed sidebar) - 12px */
+}
+
+/* na mobile ukrywamy — tam używamy hamburgera w topbarze */
+@media (max-width: 900px){
+  .edge-toggle{ display: none; }
+}
+

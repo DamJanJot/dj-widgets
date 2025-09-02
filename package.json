@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:full": "concurrently \"npm run dev\" \"cd dj-api && php artisan serve\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "lucide-react": "^0.542.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.1",
@@ -21,6 +23,7 @@
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.2.1",
     "typescript": "^5.5.4",
     "vite": "^5.4.2"
   }
