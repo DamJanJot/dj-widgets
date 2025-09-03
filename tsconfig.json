@@ -31,8 +31,6 @@
 
 
 
-
-
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -41,7 +39,6 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "skipLibCheck": true,
-    "allowJs": false,
     "strict": true,
     "noEmit": true,
     "resolveJsonModule": true,
