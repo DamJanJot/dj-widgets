@@ -1,13 +1,27 @@
-import CurrencyBarChart from '../components/CurrencyBarChart'
-import CryptoCard from '../components/CryptoCard'
-import GoldLineChart from '../components/GoldLineChart'
+
+import GoldHistoryWidget from '@/components/gold-history-widget';
+import CurrencyDashboard from '@/components/currency-dashboard';
+import CryptoWidget from '@/components/crypto-widget';
+
+
+
 
 export default function Markets(){
   return (
     <div className="grid">
-      <CurrencyBarChart />
-      <CryptoCard />
-      <GoldLineChart />
+
+      <div className="card">
+        <GoldHistoryWidget />
+      </div>
+
+      <div className='card'>
+        <CryptoWidget />
+      </div>
+
+      <div className='card'>
+        <CurrencyDashboard />
+      </div>
+     
     </div>
   )
 }

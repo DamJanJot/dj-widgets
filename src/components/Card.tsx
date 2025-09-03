@@ -5,6 +5,13 @@ export default function Card({title, children, className}:{title?:string, childr
     <div className={`card ${className??''}`}>
       {title && <h3>{title}</h3>}
       {children}
+
+
+      
     </div>
   )
 }
+
+
+
+
