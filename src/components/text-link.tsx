@@ -1,19 +1,31 @@
-import { cn } from '@/lib/utils';
-import { Link } from '@inertiajs/react';
-import { ComponentProps } from 'react';
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { cn } from '@/lib/utils'
 
-type LinkProps = ComponentProps<typeof Link>;
+type Props = {
+  href: string
+  className?: string
+  children: React.ReactNode
+  title?: string
+  target?: string
+  rel?: string
+  onClick?: React.MouseEventHandler
+}
 
-export default function TextLink({ className = '', children, ...props }: LinkProps) {
+export default function TextLink({ href, className, children, ...rest }: Props) {
+  const isInternal = href.startsWith('/') || href.startsWith('#')
+  const classes = cn('text-sky-400 hover:underline', className)
+
+  if (isInternal) {
     return (
-        <Link
-            className={cn(
-                'text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500',
-                className,
-            )}
-            {...props}
-        >
-            {children}
-        </Link>
-    );
+      <Link to={href} className={classes} {...rest}>
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <a href={href} className={classes} {...rest}>
+      {children}
+    </a>
+  )
 }
