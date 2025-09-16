@@ -31,3 +31,4 @@ Zamiast mocków w `services/mock.ts` wstaw zapytania do Twojego back-endu (Larav
 - Output Directory: `dist`
 
 Miłego hackowania 👊
+# dj-widgets
