@@ -30,5 +30,16 @@ Zamiast mocków w `services/mock.ts` wstaw zapytania do Twojego back-endu (Larav
 - Build Command: `npm run build`
 - Output Directory: `dist`
 
-Miłego hackowania 👊
-# dj-widgets
+
+## 🛠 Tech Stack
+
+- ⚡ [Vite](https://vitejs.dev/) — fast build tool
+- ⚛ [React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- 🎨 TailwindCSS (optional styling)
+- 📊 Chart.js / Recharts (widgets & charts)
+
+---
+
+## 📜 License
+
+MIT — feel free to use and modify.
