@@ -1,35 +1,60 @@
+# 🧩 DJ Dashboard (React + Vite + TypeScript)
 
-# DJ Dashboard (React + Vite + TypeScript)
+A lightweight dashboard template with a **sidebar navigation** and a **dashboard view** (tiles + charts).  
+Built with **React, Vite, and TypeScript**, designed for quick prototyping and easy API integration.
 
-Lekki szkielet aplikacji z **panelem bocznym** i **widokiem dashboardu** (kafle + wykresy), wizualnie zbliżony do Twoich screenów.
+---
 
-## Szybki start
+## 🚀 Quick Start
+
 ```bash
-npm i
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# produkcja
+
+# Production build
 npm run build && npm run preview
 ```
 
-## Struktura
+---
+
+## 📂 Project Structure
+
 ```
 src/
-  components/      # karty + widżety
-  pages/           # Dashboard + placeholdery
-  services/mock.ts # mock danych (łatwo podmienisz na prawdziwe API)
+ ├─ components/     # Cards & widgets
+ ├─ pages/          # Dashboard + placeholders
+ └─ services/
+     └─ mock.ts     # Mock data (can be replaced with real API calls)
 ```
 
-## Podłączenie API
-Zamiast mocków w `services/mock.ts` wstaw zapytania do Twojego back-endu (Laravel) lub publicznych API (pogoda, newsy).
+---
 
-- dla Vite używaj zmiennych środowiskowych `VITE_API_URL`
-- obsługę CORS ogarnij po stronie API
+## 🔌 API Integration
 
-## Deploy (Vercel)
-- Utwórz projekt z tego repo
-- Build Command: `npm run build`
-- Output Directory: `dist`
+Instead of using mocks from `services/mock.ts`, connect your own backend:
 
+- Replace mock requests with real API calls (Laravel, Express, etc.)
+- Use Vite environment variables (e.g. `VITE_API_URL`)
+- Make sure your backend handles **CORS**
+
+---
+
+## ☁️ Deploy (Vercel)
+
+1. Create a new project from this repo
+2. Set build command:  
+   ```bash
+   npm run build
+   ```
+3. Set output directory:  
+   ```
+   dist
+   ```
+
+---
 
 ## 🛠 Tech Stack
 
