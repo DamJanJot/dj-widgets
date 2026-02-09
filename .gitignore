@@ -7,3 +7,4 @@ dist/
 # system
 .DS_Store
 Thumbs.db
+dj-api/public/uploads/

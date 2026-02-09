@@ -101,7 +101,7 @@ export default function Topbar() {
 
           <div className="avatar-wrap">
             <button className="avatar" onClick={() => { setMenuOpen(v => !v); setNotifOpen(false) }}>
-              <img src="/logo_orbitum_bezbg.png" alt="U" />
+              <img src="/dj-api/public/uploads/default.png" alt="U" />
             </button>
             {menuOpen && (
               <div className="dropdown">
