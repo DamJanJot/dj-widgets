@@ -25,7 +25,7 @@ export default function CurrencyDashboard() {
                 const data = await res.json();
                 const availableRates = data[0].rates;
 
-                const selected = ['USD', 'EUR', 'GBP'].map((currency) => {
+                const selected = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'NOK', 'SEK', 'CAD', 'AUD'].map((currency) => {
                     const found = availableRates.find((r: any) => r.code === currency);
                     return { currency, rate: found ? found.mid : 0 };
                 });
@@ -60,18 +60,18 @@ export default function CurrencyDashboard() {
     return (
         <div className="flex flex-col gap-4 w-full widget text-center">
             <div>
-                <h2 className="text-lg font-semibold mb-2 ">Kursy walut</h2>
-                <ul className=" text-sm text-neutral-500 space-y-1">
+                <h2 className="text-lg font-semibold mb-4 ">Kursy walut (PLN)</h2>
+                <div className="grid grid-cols-3 gap-3">
                     {rates.map((r, idx) => (
-                        <li key={idx} className="flex row-between">
-                            <span>{r.currency} </span>
-                            <span>{r.rate.toFixed(2)} PLN</span>
-                        </li>
+                        <div key={idx} className="stat">
+                            <div className="label">{r.currency}</div>
+                            <div className="value text-base">{r.rate.toFixed(2)} PLN</div>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
 
-            <div className="h-48">
+            <div className="h-56 mt-2">
                 <Bar data={chartData} options={options} />
             </div>
         </div>

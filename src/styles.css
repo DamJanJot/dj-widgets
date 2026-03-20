@@ -35,7 +35,7 @@ body.sidebar-collapsed .layout{grid-template-columns:var(--sidebar-w-collapsed) 
 .brand-name{font-weight:700}
 .side-nav{display:flex;flex-direction:column;gap:6px}
 .side-footer{position:absolute;bottom:12px;left:12px;right:12px;display:flex;flex-direction:column;gap:6px}
-.nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .2s}
 .nav-item:hover,.nav-item.active{background:#1f2937}
 .nav-icon{min-width:22px;text-align:center}
 .link-text{white-space:nowrap}
@@ -54,10 +54,10 @@ body.sidebar-collapsed .link-text{display:none}
   position:sticky; top:0; z-index:1200;
 }
 .topbar .right{display:flex;align-items:center;gap:12px}  /* dzwonek + avatar w jednej linii */
-.content{padding:16px}
+.content{padding:16px;max-width:1400px;margin:0 auto;width:100%}
 
 /* buttons, avatar, dropdowny */
-.btn-icon{background:transparent;border:0;color:inherit;font-size:18px;cursor:pointer;padding:6px;border-radius:8px}
+.btn-icon{background:transparent;border:0;color:inherit;font-size:18px;cursor:pointer;padding:6px;border-radius:8px;transition:background .2s}
 .btn-icon:hover{background:#1f2937}
 .avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;border:0;background:#1f2937;cursor:pointer;padding:0}
 .avatar img{width:100%;height:100%;object-fit:cover}
@@ -67,7 +67,7 @@ body.sidebar-collapsed .link-text{display:none}
 .dropdown-header{display:flex;gap:10px;align-items:center;padding:10px 12px}
 .dropdown-user{display:flex;flex-direction:column}
 .dropdown-sep{height:1px;background:var(--border)}
-.dropdown-item{display:block;width:100%;padding:10px 12px;text-align:left;background:transparent;border:0;color:inherit;cursor:pointer}
+.dropdown-item{display:block;width:100%;padding:10px 12px;text-align:left;background:transparent;border:0;color:inherit;cursor:pointer;transition:background .2s}
 .dropdown-item:hover{background:#1f2937}
 .dropdown-item.danger{color:#ef4444}
 
@@ -76,29 +76,45 @@ body.sidebar-collapsed .link-text{display:none}
 .scrim.show{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:900}
 
 /* karty i widżety */
-.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:16px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:0;transition:border-color .2s,transform .2s}
+.card:hover{border-color:rgba(79, 70, 229, 0.5)}
 .card.light-grid{background:var(--panel);border:1px solid rgba(255,255,255,.08)}
 .widget{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));
-  border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:14px}
+  border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:16px;transition:border-color .2s}
+.widget:hover{border-color:rgba(79, 70, 229, 0.3)}
+.widget h2{margin:0 0 12px 0;font-size:1.1rem}
 .widget h3{margin:0 0 8px 0}
 .stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
-  padding:10px 12px;border-radius:12px}
-.stat .label{color:var(--muted);font-size:.9rem}
+  padding:12px 14px;border-radius:12px}
+.stat .label{color:var(--muted);font-size:.85rem;margin-bottom:4px}
 .stat .value{font-weight:700;font-variant-numeric:tabular-nums}
 
 /* listy */
 .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .table{width:100%;border-collapse:collapse}
-.table th,.table td{padding:8px;border-bottom:1px solid var(--border)}
+.table th,.table td{padding:8px;border-bottom:1px solid var(--border);text-align:left}
+.table th{background:rgba(255,255,255,.02);font-weight:600}
+.table tr:hover{background:rgba(255,255,255,.02)}
 
 /* responsywna siatka kontentu */
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid.grid-cols-1{grid-template-columns:1fr}
+.grid.grid-cols-1.lg\:grid-cols-2{grid-template-columns:1fr}
+@media (min-width:1024px){
+  .grid.grid-cols-1.lg\:grid-cols-2{grid-template-columns:repeat(2,1fr)}
+}
 .grid-col{display:flex;flex-direction:column}
 
 /* PROGNOZA – w jednym rzędzie, przewijana w poziomie przy braku miejsca */
 .forecast-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(120px,1fr);gap:12px;overflow-x:auto;padding-bottom:8px}
 .forecast-item{display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;background:rgba(255,255,255,.02);
-  border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px}
+  border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;transition:all .2s}
+.forecast-item:hover{background:rgba(255,255,255,.05);border-color:rgba(79, 70, 229, 0.5)}
+
+/* line-clamp utility */
+.line-clamp-1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
 /* flagi/ikony */
 .flag{font-size:18px;display:inline-block;width:20px;text-align:center}
@@ -112,51 +128,16 @@ body.sidebar-collapsed .link-text{display:none}
   .sidebar.open{transform:translateX(0)}
   body.sidebar-collapsed .nav-item{justify-content:flex-start}
   body.sidebar-collapsed .brand-name, body.sidebar-collapsed .link-text{display:inline}
+  .grid{grid-template-columns:1fr}
+  .grid-cols-1.lg\:grid-cols-2{grid-template-columns:1fr}
 }
 
-
-
-/* helpers */
-.text-center{ text-align:center }
-.row{ display:flex; gap:12px; align-items:center }
-.row-between{ display:flex; gap:12px; align-items:center; justify-content:space-between }
-
-/* widżety */
-.widget{ background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01)); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:14px }
-.stat{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); padding:10px 12px; border-radius:12px }
-.stat .label{ color:#9ca3af; font-size:.9rem }
-.stat .value{ font-weight:700; font-variant-numeric:tabular-nums }
-
-/* prognoza – rząd z auto-scroll */
-.forecast-row{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(120px,1fr); gap:12px; overflow-x:auto; padding-bottom:8px }
-.forecast-item{ display:flex; flex-direction:column; gap:4px; align-items:center; justify-content:center; background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px }
-
-/* jasna kratka – używana przez wykresy (recharts/Chart.js ustawiłem w opcjach) */
-.flag{ font-size:18px; display:inline-block; width:20px; text-align:center }
-.coin{ width:18px; height:18px; border-radius:50%; display:inline-block; overflow:hidden; vertical-align:-3px }
-
-
-
-.title-center{
-  position:absolute; left:50%; transform:translateX(-50%);
-  pointer-events:none; font-weight:600;
+@media (max-width:600px){
+  .content{padding:12px}
+  .card{padding:12px}
+  .widget{padding:12px}
+  .stat{padding:10px 12px}
 }
-
-
-
-
-.topbar{
-  height:56px;border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);
-  position:sticky; top:0; z-index:1200;
-  display:block; /* grid w klasie .grid3 */
-}
-.topbar.grid3{
-  display:grid; grid-template-columns:auto 1fr auto; align-items:center; padding:0 12px;
-}
-.tb-left{display:flex;align-items:center}
-.tb-center{justify-self:center;font-weight:600;pointer-events:none}
-.tb-right{display:flex;gap:12px;align-items:center;justify-self:end}
 
 
 

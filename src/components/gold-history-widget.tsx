@@ -17,7 +17,7 @@ export default function GoldHistoryWidget() {
             try {
                 const endDate = new Date();
                 const startDate = new Date();
-                startDate.setDate(endDate.getDate() - 6); // 7 dni wstecz
+                startDate.setDate(endDate.getDate() - 90); // 90 dni wstecz
 
                 const formatDate = (d: Date) =>
                     `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -29,7 +29,8 @@ export default function GoldHistoryWidget() {
                 console.log("Historia złota:", data);
 
                 const prepared = data.map((entry: any) => ({
-                    date: new Date(entry.data).toLocaleDateString('pl-PL', { weekday: 'short' }),
+                    date: new Date(entry.data).toLocaleDateString('pl-PL', { month: 'short', day: 'numeric' }),
+                    fullDate: entry.data,
                     price: entry.cena,
                 }));
 
@@ -69,15 +70,17 @@ export default function GoldHistoryWidget() {
     const latestPrice = history[history.length - 1]?.price;
 
     return (
-        <div className="w-full h-full flex flex-col justify-center">
-            <div className="relative h-48">
+        <div className="w-full h-full flex flex-col justify-between">
+            <h2 className="text-lg font-semibold mb-2">Cena złota (ostatnie 90 dni)</h2>
+            <div className="relative h-80">
                 <Line data={data} options={options} />
             </div>
 
             {latestPrice && (
-                <p className="text-xl text-center font-bold mt-2">
-                    Cena złota (gram): {latestPrice.toFixed(2)} PLN
-                </p>
+                <div className="mt-4 stat">
+                    <div className="label">Aktualna cena (gram)</div>
+                    <div className="value text-xl">{latestPrice.toFixed(2)} PLN</div>
+                </div>
             )}
         </div>
     );

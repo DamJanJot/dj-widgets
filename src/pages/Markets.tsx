@@ -8,18 +8,21 @@ import CryptoWidget from '@/components/crypto-widget';
 
 export default function Markets(){
   return (
-    <div className="grid">
+    <div className="content">
+      <h1 className="text-2xl font-bold mb-4">Rynki i waluty</h1>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+        <div className="card lg:col-span-1">
+          <GoldHistoryWidget />
+        </div>
 
-      <div className="card">
-        <GoldHistoryWidget />
+        <div className='card lg:col-span-1'>
+          <CurrencyDashboard />
+        </div>
       </div>
-
+      
       <div className='card'>
         <CryptoWidget />
-      </div>
-
-      <div className='card'>
-        <CurrencyDashboard />
       </div>
      
     </div>
