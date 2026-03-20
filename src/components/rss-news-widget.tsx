@@ -78,41 +78,41 @@ export default function RSSNewsWidget({ feedUrl }: RSSNewsWidgetProps) {
     };
 
     return (
-        <div className="w-full">
-            <h2 className="text-lg font-semibold mb-4 text-center">Aktualności</h2>
+        <div className="news-widget">
+            <h2 className="widget-title">Aktualnosci</h2>
             {error ? (
-                <p className="text-red-500 text-center">{error}</p>
+                <p className="news-error">{error}</p>
             ) : (
-                <div className="space-y-3">
+                <div className="news-list">
                     {articles.map((article, idx) => (
                         <a
                             key={idx}
                             href={article.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block p-3 rounded-lg border border-neutral-700 hover:border-indigo-500 transition group overflow-hidden"
+                            className="news-item"
                         >
-                            <div className="flex gap-3">
+                            <div className="news-item-inner">
                                 {article.thumbnail && (
-                                    <div className="flex-shrink-0 w-20 h-20 rounded overflow-hidden bg-neutral-700">
+                                    <div className="news-thumb-wrap">
                                         <img
                                             src={article.thumbnail}
                                             alt=""
-                                            className="w-full h-full object-cover group-hover:scale-105 transition"
+                                            className="news-thumb"
                                             onError={(e) => {
                                                 (e.target as HTMLImageElement).style.display = 'none';
                                             }}
                                         />
                                     </div>
                                 )}
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-indigo-400">
+                                <div className="news-content">
+                                    <p className="news-title line-clamp-2">
                                         {article.title}
                                     </p>
-                                    <div className="flex items-center gap-2 mt-2 text-xs text-muted">
+                                    <div className="news-meta">
                                         <span>{article.pubDate}</span>
-                                        <span className="text-neutral-600">•</span>
-                                        <span className="flex items-center gap-1">
+                                        <span className="news-dot">•</span>
+                                        <span className="news-source">
                                             {formatUrl(article.link)}
                                             <ExternalLink size={12} />
                                         </span>

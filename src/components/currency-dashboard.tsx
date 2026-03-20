@@ -58,20 +58,20 @@ export default function CurrencyDashboard() {
     };
 
     return (
-        <div className="flex flex-col gap-4 w-full widget text-center">
+        <div className="widget currency-widget">
             <div>
-                <h2 className="text-lg font-semibold mb-4 ">Kursy walut (PLN)</h2>
-                <div className="grid grid-cols-3 gap-3">
+                <h2 className="widget-title">Kursy walut (PLN)</h2>
+                <div className="currency-grid">
                     {rates.map((r, idx) => (
                         <div key={idx} className="stat">
                             <div className="label">{r.currency}</div>
-                            <div className="value text-base">{r.rate.toFixed(2)} PLN</div>
+                            <div className="value">{r.rate.toFixed(2)} PLN</div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className="h-56 mt-2">
+            <div className="currency-chart-wrap">
                 <Bar data={chartData} options={options} />
             </div>
         </div>

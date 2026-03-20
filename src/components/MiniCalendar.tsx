@@ -60,20 +60,20 @@ export default function MiniCalendar() {
     };
 
     return (
-        <div className="widget w-full">
-            <div className="flex items-center justify-between mb-4">
-                <button onClick={handlePrev} className="btn-icon p-1">
+        <div className="widget mini-calendar">
+            <div className="mini-calendar-header">
+                <button onClick={handlePrev} className="btn-icon mini-calendar-nav" aria-label="Poprzedni miesiac">
                     <ChevronLeft size={18} />
                 </button>
-                <h3 className="text-sm font-semibold capitalize">{monthName}</h3>
-                <button onClick={handleNext} className="btn-icon p-1">
+                <h3 className="mini-calendar-title">{monthName}</h3>
+                <button onClick={handleNext} className="btn-icon mini-calendar-nav" aria-label="Nastepny miesiac">
                     <ChevronRight size={18} />
                 </button>
             </div>
 
-            <div className="grid grid-cols-7 gap-1 text-center text-xs">
+            <div className="mini-calendar-grid">
                 {['Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'Sb', 'Nd'].map((day) => (
-                    <div key={day} className="text-muted font-semibold py-1">
+                    <div key={day} className="mini-calendar-weekday">
                         {day}
                     </div>
                 ))}
@@ -83,9 +83,9 @@ export default function MiniCalendar() {
                     return (
                         <div
                             key={idx}
-                            className={`py-1 rounded text-xs cursor-pointer ${
-                                day.isCurrentMonth ? 'text-white' : 'text-muted'
-                            } ${isToday ? 'bg-indigo-500 font-bold' : 'hover:bg-neutral-700'}`}
+                            className={`mini-calendar-day ${
+                                day.isCurrentMonth ? 'mini-calendar-day-current' : 'mini-calendar-day-outside'
+                            } ${isToday ? 'mini-calendar-day-today' : ''}`}
                         >
                             {day.date}
                         </div>

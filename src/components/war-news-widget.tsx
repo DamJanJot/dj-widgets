@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 interface Article {
     title: string;
     link: string;
+    pubDate?: string;
 }
 
 export default function WarNewsWidget() {
@@ -22,7 +23,11 @@ export default function WarNewsWidget() {
             item.title.toLowerCase().includes('ukraine')
         );
 
-        setArticles(filtered.slice(0, 5));
+        setArticles(filtered.slice(0, 6).map((item: any) => ({
+            title: item.title,
+            link: item.link,
+            pubDate: item.pubDate ? new Date(item.pubDate).toLocaleDateString('pl-PL') : undefined,
+        })));
     } catch (err: any) {
         console.error(err);
         setError('Nie udało się pobrać danych.');
@@ -34,16 +39,17 @@ export default function WarNewsWidget() {
     }, []);
 
     return (
-        <div className="p-4">
-            <h2 className="text-lg font-semibold mb-2 text-center">Działania zbrojne</h2>
+        <div className="news-widget">
+            <h2 className="widget-title">Dzialania zbrojne</h2>
             {error ? (
-                <p className="text-red-500 text-center">{error}</p>
+                <p className="news-error">{error}</p>
             ) : (
-                <ul className="text-sm text-neutral-500 space-y-2">
+                <ul className="news-list-simple">
                     {articles.map((article, idx) => (
-                        <li key={idx}>
-                            <a href={article.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                                {article.title}
+                        <li key={idx} className="news-simple-item">
+                            <a href={article.link} target="_blank" rel="noopener noreferrer" className="news-simple-link">
+                                <span className="news-simple-title">{article.title}</span>
+                                {article.pubDate && <span className="news-simple-date">{article.pubDate}</span>}
                             </a>
                         </li>
                     ))}

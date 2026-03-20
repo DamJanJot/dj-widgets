@@ -8,9 +8,9 @@ import WeatherForecast from '@/components/weather-forecast';
 export default function Dashboard(){
   return (
     <div className="content">
-      <h1 className="text-2xl font-bold mb-4">Pulpit nawigacyjny</h1>
+      <h1 className="page-title">Pulpit nawigacyjny</h1>
 
-      <div className='grid'>
+      <div className='dashboard-grid'>
         <div className="card">
           <Clock />
         </div>
