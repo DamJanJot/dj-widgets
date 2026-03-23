@@ -53,6 +53,14 @@ body.sidebar-collapsed .link-text{display:none}
   padding:0 12px;background:linear-gradient(180deg,rgba(17, 106, 190, 0.527),transparent);
   position:sticky; top:0; z-index:1200;
 }
+.topbar.grid3{
+  display:grid;
+  grid-template-columns:56px 1fr auto;
+  align-items:center;
+}
+.tb-left{display:flex;align-items:center}
+.tb-center{justify-self:center;font-weight:600}
+.tb-right{display:flex;align-items:center;gap:12px;justify-self:end}
 .topbar .right{display:flex;align-items:center;gap:12px}  /* dzwonek + avatar w jednej linii */
 .content{padding:16px;max-width:1400px;margin:0 auto;width:100%}
 
@@ -61,6 +69,18 @@ body.sidebar-collapsed .link-text{display:none}
 .btn-icon:hover{background:#1f2937}
 .avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;border:0;background:#1f2937;cursor:pointer;padding:0}
 .avatar img{width:100%;height:100%;object-fit:cover}
+.avatar-initials{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.03em;
+  color:#e5e7eb;
+  background:linear-gradient(135deg,#1d4ed8,#1e3a8a);
+}
 .avatar-wrap{position:relative}
 .dropdown{position:absolute;right:0;top:40px;z-index:70}
 .dropdown-menu{background:#111827;border:1px solid var(--border);border-radius:12px;min-width:240px;box-shadow:0 10px 30px rgba(0,0,0,.35);overflow:hidden}

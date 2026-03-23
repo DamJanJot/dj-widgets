@@ -5,7 +5,7 @@ export default function Sidebar() {
   return (
     <aside className="sidebar" id="sidebar">
       <div className="brand">
-        <img src="/dj-api/public/uploads/orbitum-logo.png" alt="Logo" className="brand-logo" />
+        <img src="/app-logo.svg" alt="Logo Orbitum" className="brand-logo" />
         <span className="brand-name">Orbitum</span>
       </div>
 

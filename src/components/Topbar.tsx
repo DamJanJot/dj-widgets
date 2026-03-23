@@ -100,8 +100,8 @@ export default function Topbar() {
           )}
 
           <div className="avatar-wrap">
-            <button className="avatar" onClick={() => { setMenuOpen(v => !v); setNotifOpen(false) }}>
-              <img src="/dj-api/public/uploads/default.png" alt="U" />
+            <button className="avatar" aria-label="Profil użytkownika" onClick={() => { setMenuOpen(v => !v); setNotifOpen(false) }}>
+              <span className="avatar-initials" aria-hidden="true">DK</span>
             </button>
             {menuOpen && (
               <div className="dropdown">
