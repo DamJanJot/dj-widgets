@@ -8,3 +8,16 @@ dist/
 .DS_Store
 Thumbs.db
 dj-api/public/uploads/
+
+
+# Katalogi IDE
+.idea/
+.vscode/
+
+# runtime uploads
+dj-api/public/uploads/chat/
+dj-api/public/uploads/posts/
+
+# cba deploy artifacts and secrets
+cba_upload_package/*.zip
+cba_upload_package/laravel_core/.env
