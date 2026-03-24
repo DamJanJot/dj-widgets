@@ -1,1 +1,15 @@
 * text=auto eol=lf
+
+# ignoruj pliki buildów
+dist/* linguist-vendored
+build/* linguist-vendored
+
+# ignoruj locki i inne
+package-lock.json linguist-vendored
+yarn.lock linguist-vendored
+
+# ignoruj mapy
+*.map linguist-vendored
+
+# ignoruj inne śmieci
+*.txt linguist-vendored
