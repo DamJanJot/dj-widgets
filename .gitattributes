@@ -34,3 +34,9 @@ LICENSE linguist-documentation
 
 # Extensionless project scripts/files
 dj-api/artisan linguist-generated=true
+
+# Tiny HTML/JS files that GitHub groups as "Other"
+index.html linguist-generated=true
+dj-api/vite.config.js linguist-generated=true
+dj-api/resources/js/app.js linguist-generated=true
+dj-api/resources/js/bootstrap.js linguist-generated=true
