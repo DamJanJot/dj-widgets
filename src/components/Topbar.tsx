@@ -16,6 +16,14 @@ const TITLE: Record<string, string> = {
 export default function Topbar() {
   const loc = useLocation()
   const title = TITLE[loc.pathname] ?? 'Orbi'
+  const user = { name: 'Damian', email: 'damian@example.com' }
+  const initials = user.name
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
 
   const [isMobile, setIsMobile] = useState(window.matchMedia(MQ_MOBILE).matches)
   const [collapsed, setCollapsed] = useState(document.body.classList.contains('sidebar-collapsed'))
@@ -101,12 +109,12 @@ export default function Topbar() {
 
           <div className="avatar-wrap">
             <button className="avatar" aria-label="Profil użytkownika" onClick={() => { setMenuOpen(v => !v); setNotifOpen(false) }}>
-              <span className="avatar-initials" aria-hidden="true">DK</span>
+              <span className="avatar-initials" aria-hidden="true">{initials}</span>
             </button>
             {menuOpen && (
               <div className="dropdown">
                 <UserMenuContent
-                  user={{ name: 'Damian', email: 'damian@example.com' }}
+                  user={user}
                   onLogout={() => setMenuOpen(false)}
                   onClose={() => setMenuOpen(false)}
                 />
