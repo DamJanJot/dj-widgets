@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { ExternalLink } from 'lucide-react';
 
 interface Article {
     title: string;
     link: string;
     pubDate?: string;
+    thumbnail?: string;
 }
 
 export default function WarNewsWidget() {
@@ -12,48 +14,113 @@ export default function WarNewsWidget() {
 
     useEffect(() => {
         const fetchRSS = async () => {
-    try {
-        const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/news/world/rss.xml');
-        const data = await res.json();
+            try {
+                const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/news/world/rss.xml');
+                if (!res.ok) throw new Error(`Błąd API: ${res.status}`);
 
-        const filtered = data.items.filter((item: any) =>
-            item.title.toLowerCase().includes('war') ||
-            item.title.toLowerCase().includes('conflict') ||
-            item.title.toLowerCase().includes('military') ||
-            item.title.toLowerCase().includes('ukraine')
-        );
+                const data = await res.json();
 
-        setArticles(filtered.slice(0, 6).map((item: any) => ({
-            title: item.title,
-            link: item.link,
-            pubDate: item.pubDate ? new Date(item.pubDate).toLocaleDateString('pl-PL') : undefined,
-        })));
-    } catch (err: any) {
-        console.error(err);
-        setError('Nie udało się pobrać danych.');
-    }
-};
+                const filtered = (data.items || []).filter((item: any) =>
+                    item.title.toLowerCase().includes('war') ||
+                    item.title.toLowerCase().includes('conflict') ||
+                    item.title.toLowerCase().includes('military') ||
+                    item.title.toLowerCase().includes('ukraine')
+                );
+
+                const news = filtered.slice(0, 8).map((item: any) => {
+                    const pubDate = item.pubDate ? new Date(item.pubDate) : null;
+                    const formattedDate = pubDate
+                        ? pubDate.toLocaleDateString('pl-PL', {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: '2-digit',
+                          })
+                        : undefined;
+
+                    let thumbnail = '';
+                    if (item.thumbnail) {
+                        thumbnail = item.thumbnail;
+                    } else if (item.enclosure?.link) {
+                        thumbnail = item.enclosure.link;
+                    } else if (item.content) {
+                        const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
+                        if (imgMatch) thumbnail = imgMatch[1];
+                    } else if (item.description) {
+                        const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+                        if (imgMatch) thumbnail = imgMatch[1];
+                    }
+
+                    return {
+                        title: item.title,
+                        link: item.link,
+                        pubDate: formattedDate,
+                        thumbnail,
+                    };
+                });
+
+                setArticles(news);
+                setError(null);
+            } catch (err: any) {
+                console.error(err);
+                setError(err.message || 'Nie udało się pobrać danych.');
+            }
+        };
 
 
         fetchRSS();
     }, []);
 
+    const formatUrl = (url: string) => {
+        try {
+            return new URL(url).hostname.replace('www.', '');
+        } catch {
+            return 'link';
+        }
+    };
+
     return (
         <div className="news-widget">
-            <h2 className="widget-title">Dzialania zbrojne</h2>
+            <h2 className="widget-title">Działania zbrojne</h2>
             {error ? (
                 <p className="news-error">{error}</p>
             ) : (
-                <ul className="news-list-simple">
+                <div className="news-list">
                     {articles.map((article, idx) => (
-                        <li key={idx} className="news-simple-item">
-                            <a href={article.link} target="_blank" rel="noopener noreferrer" className="news-simple-link">
-                                <span className="news-simple-title">{article.title}</span>
-                                {article.pubDate && <span className="news-simple-date">{article.pubDate}</span>}
-                            </a>
-                        </li>
+                        <a
+                            key={idx}
+                            href={article.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="news-item"
+                        >
+                            <div className="news-item-inner">
+                                {article.thumbnail && (
+                                    <div className="news-thumb-wrap">
+                                        <img
+                                            src={article.thumbnail}
+                                            alt=""
+                                            className="news-thumb"
+                                            onError={(e) => {
+                                                (e.target as HTMLImageElement).style.display = 'none';
+                                            }}
+                                        />
+                                    </div>
+                                )}
+                                <div className="news-content">
+                                    <p className="news-title line-clamp-2">{article.title}</p>
+                                    <div className="news-meta">
+                                        <span>{article.pubDate}</span>
+                                        <span className="news-dot">•</span>
+                                        <span className="news-source">
+                                            {formatUrl(article.link)}
+                                            <ExternalLink size={12} />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
