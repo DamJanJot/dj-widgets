@@ -7,11 +7,23 @@ type Props = {
 }
 
 export default function UserMenuContent({ user, onLogout, onClose }: Props) {
+  const initials = (user?.name ?? 'Użytkownik')
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+
   return (
     <div className="dropdown-menu">
       <div className="dropdown-header">
-        <div className="avatar sm">
-          <img src={user?.avatarUrl ?? '/logo_orbitum_bezbg.png'} alt="A" />
+        <div className="avatar sm" aria-hidden="true">
+          {user?.avatarUrl ? (
+            <img src={user.avatarUrl} alt="" />
+          ) : (
+            <span className="avatar-initials">{initials}</span>
+          )}
         </div>
         <div className="dropdown-user">
           <strong>{user?.name ?? 'Użytkownik'}</strong>

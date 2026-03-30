@@ -69,6 +69,7 @@ body.sidebar-collapsed .link-text{display:none}
 .btn-icon:hover{background:#1f2937}
 .avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;border:0;background:#1f2937;cursor:pointer;padding:0}
 .avatar img{width:100%;height:100%;object-fit:cover}
+.avatar.sm{width:32px;height:32px;cursor:default}
 .avatar-initials{
   width:100%;
   height:100%;
