@@ -1,20 +1,36 @@
 * text=auto eol=lf
 
-# ignoruj pliki buildów
-dist/* linguist-vendored
-build/* linguist-vendored
+# Build outputs
+dist/** linguist-generated=true
+build/** linguist-generated=true
 
-# ignoruj locki i inne
-package-lock.json linguist-vendored
-yarn.lock linguist-vendored
+# Lock files and caches
+package-lock.json linguist-generated=true
+yarn.lock linguist-generated=true
+pnpm-lock.yaml linguist-generated=true
+composer.lock linguist-generated=true
+*.tsbuildinfo linguist-generated=true
 
-# ignoruj mapy
-*.map linguist-vendored
+# Sourcemaps
+*.map linguist-generated=true
 
-# ignoruj inne śmieci
-*.txt linguist-vendored
-
+# Documentation / text-like files
 *.md linguist-documentation
 *.txt linguist-documentation
+LICENSE linguist-documentation
+
+# Data/config files not counted as programming languages
 *.json linguist-data
 *.yml linguist-data
+*.yaml linguist-data
+*.xml linguist-data
+*.example linguist-data
+
+# Dot/config files that often end up as Other
+*.gitignore linguist-generated=true
+*.gitattributes linguist-generated=true
+*.editorconfig linguist-generated=true
+*.htaccess linguist-generated=true
+
+# Extensionless project scripts/files
+dj-api/artisan linguist-generated=true
