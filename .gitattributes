@@ -13,3 +13,6 @@ yarn.lock linguist-vendored
 
 # ignoruj inne śmieci
 *.txt linguist-vendored
+
+*.md linguist-documentation
+*.txt linguist-documentation
