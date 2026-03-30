@@ -16,3 +16,5 @@ yarn.lock linguist-vendored
 
 *.md linguist-documentation
 *.txt linguist-documentation
+*.json linguist-data
+*.yml linguist-data
