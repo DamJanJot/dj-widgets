@@ -249,6 +249,13 @@ body.sidebar-collapsed .link-text{display:none}
   color:var(--muted);
 }
 
+.mini-calendar-day-empty{
+  pointer-events:none;
+  background:transparent;
+  border-color:transparent;
+  cursor:default;
+}
+
 .mini-calendar-day-today{
   background:var(--accent);
   border-color:var(--accent-border);

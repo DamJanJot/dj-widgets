@@ -144,7 +144,6 @@ export default function MiniCalendar() {
     const nextKey = dateKey(nextDate)
     setSelectedDate(nextKey)
     setEventDate(nextKey)
-    if (!day.isCurrentMonth) setCurrentDate(new Date(day.year, day.month, 1))
   }
 
   const addEvent = (event: FormEvent) => {
@@ -175,6 +174,10 @@ export default function MiniCalendar() {
         ))}
 
         {allDays.map((day, idx) => {
+          if (!day.isCurrentMonth) {
+            return <div key={idx} className="mini-calendar-day mini-calendar-day-empty" aria-hidden="true" />
+          }
+
           const cellDate = new Date(day.year, day.month, day.date)
           const cellKey = dateKey(cellDate)
           const hasHoliday = !!holidays[holidayKey(cellDate)]?.length
@@ -188,9 +191,7 @@ export default function MiniCalendar() {
               type="button"
               key={idx}
               onClick={() => selectDay(day)}
-              className={`mini-calendar-day ${
-                day.isCurrentMonth ? 'mini-calendar-day-current' : 'mini-calendar-day-outside'
-              } ${isToday ? 'mini-calendar-day-today' : ''} ${isSelected ? 'mini-calendar-day-selected' : ''} ${hasHoliday || hasEvent ? 'mini-calendar-day-event' : ''}`}
+              className={`mini-calendar-day mini-calendar-day-current ${isToday ? 'mini-calendar-day-today' : ''} ${isSelected ? 'mini-calendar-day-selected' : ''} ${hasHoliday || hasEvent ? 'mini-calendar-day-event' : ''}`}
               title={[...(holidays[holidayKey(cellDate)] ?? []), ...cellEvents.map((item) => item.title)].join(', ')}
             >
               {day.date}
