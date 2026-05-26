@@ -9,6 +9,7 @@ import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
 import Settings from './pages/Settings'
 import Repository from './pages/Repository'
+import Operations from './pages/Operations'
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/repo" element={<Repository />} />
             <Route path="/info" element={<Docs />} />
+            <Route path="/operations" element={<Operations />} />
           </Routes>
         </div>
       </div>
