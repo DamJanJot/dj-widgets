@@ -17,7 +17,8 @@ const icons: Record<SidebarItemId, typeof LayoutDashboard> = {
 export default function Sidebar() {
   const { visibleItems } = useSidebarConfig()
   const mainItems = visibleItems.filter((item) => item.id !== 'settings')
-  const settingsItem = visibleItems.find((item) => item.id === 'settings')
+  const footerItems = mainItems.filter((item) => item.id === 'repo' || item.id === 'info')
+  const topItems = mainItems.filter((item) => item.id !== 'repo' && item.id !== 'info')
 
   return (
     <aside className="sidebar" id="sidebar">
@@ -27,7 +28,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="side-nav sidebar-configured-nav">
-        {mainItems.map((item) => {
+        {topItems.map((item) => {
           const Icon = icons[item.id]
           return (
             <NavLink to={item.path} title={item.label} className="nav-item" key={item.id}>
@@ -38,12 +39,17 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {settingsItem && (
+      {footerItems.length > 0 && (
         <div className="side-footer">
-          <NavLink to={settingsItem.path} title={settingsItem.label} className="nav-item">
-            <Settings className="nav-icon" size={18} />
-            <span className="link-text">{settingsItem.label}</span>
-          </NavLink>
+          {footerItems.map((item) => {
+            const Icon = icons[item.id]
+            return (
+              <NavLink to={item.path} title={item.label} className="nav-item" key={item.id}>
+                <Icon className="nav-icon" size={18} />
+                <span className="link-text">{item.label}</span>
+              </NavLink>
+            )
+          })}
         </div>
       )}
     </aside>
