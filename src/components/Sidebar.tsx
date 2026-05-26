@@ -1,7 +1,22 @@
 import { NavLink } from 'react-router-dom'
 import { BookText, Info, LayoutDashboard, LineChart, Newspaper, RadioTower, Settings, User } from 'lucide-react'
+import { useSidebarConfig, type SidebarItemId } from '@/hooks/use-sidebar-config'
+
+const icons: Record<SidebarItemId, typeof LayoutDashboard> = {
+  dashboard: LayoutDashboard,
+  news: Newspaper,
+  markets: LineChart,
+  docs: BookText,
+  profile: User,
+  operations: RadioTower,
+  repo: BookText,
+  info: Info,
+  settings: Settings,
+}
 
 export default function Sidebar() {
+  const { visibleItems } = useSidebarConfig()
+
   return (
     <aside className="sidebar" id="sidebar">
       <div className="brand">
@@ -9,53 +24,17 @@ export default function Sidebar() {
         <span className="brand-name">Orbitum</span>
       </div>
 
-      <nav className="side-nav">
-        <NavLink to="/dashboard" title="Dashboard" className="nav-item">
-          <LayoutDashboard className="nav-icon" size={18} />
-          <span className="link-text">Dashboard</span>
-        </NavLink>
-
-        <NavLink to="/news" title="Aktualności" className="nav-item">
-          <Newspaper className="nav-icon" size={18} />
-          <span className="link-text">Aktualności</span>
-        </NavLink>
-
-        <NavLink to="/markets" title="Rynki" className="nav-item">
-          <LineChart className="nav-icon" size={18} />
-          <span className="link-text">Rynki</span>
-        </NavLink>
-
-        <NavLink to="/docs" title="Documentation" className="nav-item">
-          <BookText className="nav-icon" size={18} />
-          <span className="link-text">Documentation</span>
-        </NavLink>
-
-        <NavLink to="/profile" title="Profil" className="nav-item">
-          <User className="nav-icon" size={18} />
-          <span className="link-text">Profil</span>
-        </NavLink>
-
-        <NavLink to="/settings" title="Ustawienia" className="nav-item">
-          <Settings className="nav-icon" size={18} />
-          <span className="link-text">Ustawienia</span>
-        </NavLink>
-
-        <NavLink to="/operations" title="Centrum" className="nav-item">
-          <RadioTower className="nav-icon" size={18} />
-          <span className="link-text">Centrum</span>
-        </NavLink>
+      <nav className="side-nav sidebar-configured-nav">
+        {visibleItems.map((item) => {
+          const Icon = icons[item.id]
+          return (
+            <NavLink to={item.path} title={item.label} className="nav-item" key={item.id}>
+              <Icon className="nav-icon" size={18} />
+              <span className="link-text">{item.label}</span>
+            </NavLink>
+          )
+        })}
       </nav>
-
-      <div className="side-footer">
-        <NavLink to="/repo" title="Repository" className="nav-item">
-          <BookText className="nav-icon" size={18} />
-          <span className="link-text">Repository</span>
-        </NavLink>
-        <NavLink to="/info" title="Info" className="nav-item">
-          <Info className="nav-icon" size={18} />
-          <span className="link-text">Info</span>
-        </NavLink>
-      </div>
     </aside>
   )
 }

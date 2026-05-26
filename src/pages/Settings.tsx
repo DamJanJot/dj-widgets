@@ -1,5 +1,7 @@
-import { Bell, Globe2, Monitor, Moon, Shield, Sun } from 'lucide-react'
+import { DragEvent, useState } from 'react'
+import { Bell, Eye, EyeOff, Globe2, GripVertical, Monitor, Moon, RotateCcw, Shield, Sun } from 'lucide-react'
 import { useAppearance, type Appearance } from '@/hooks/use-appearance'
+import { useSidebarConfig, type SidebarItemId } from '@/hooks/use-sidebar-config'
 
 const themeOptions: Array<{ value: Appearance; label: string; icon: typeof Moon }> = [
   { value: 'dark', label: 'Ciemny', icon: Moon },
@@ -15,6 +17,21 @@ const settings = [
 
 export default function Settings() {
   const { appearance, updateAppearance } = useAppearance()
+  const { settings: sidebarSettings, items, toggleItem, moveItem, resetSidebar } = useSidebarConfig()
+  const [draggedId, setDraggedId] = useState<SidebarItemId | null>(null)
+
+  const handleDragStart = (event: DragEvent<HTMLDivElement>, id: SidebarItemId) => {
+    setDraggedId(id)
+    event.dataTransfer.effectAllowed = 'move'
+    event.dataTransfer.setData('text/plain', id)
+  }
+
+  const handleDrop = (event: DragEvent<HTMLDivElement>, targetId: SidebarItemId) => {
+    event.preventDefault()
+    const sourceId = (event.dataTransfer.getData('text/plain') || draggedId) as SidebarItemId | null
+    if (sourceId) moveItem(sourceId, targetId)
+    setDraggedId(null)
+  }
 
   return (
     <section className="page-shell">
@@ -62,20 +79,51 @@ export default function Settings() {
         </div>
 
         <div className="card settings-panel">
-          <h2 className="panel-title">Widok dashboardu</h2>
-          <div className="preference-grid single">
-            <div className="stat">
-              <div className="label">Układ</div>
-              <div className="value">Kompaktowy</div>
+          <div className="section-heading split">
+            <div>
+              <h2 className="panel-title">Widok w sidebarze</h2>
+              <p className="muted small">Przeciągnij elementy, aby zmienić kolejność.</p>
             </div>
-            <div className="stat">
-              <div className="label">Wiadomości</div>
-              <div className="value">7 wpisów</div>
-            </div>
-            <div className="stat">
-              <div className="label">Złoto</div>
-              <div className="value">Zakres wybierany</div>
-            </div>
+            <button className="button-like" type="button" onClick={resetSidebar}>
+              <RotateCcw size={16} />
+              Reset
+            </button>
+          </div>
+
+          <div className="sidebar-sort-list">
+            {items.map((item) => {
+              const hidden = sidebarSettings.hidden.includes(item.id)
+              return (
+                <div
+                  key={item.id}
+                  className={`sidebar-sort-item ${hidden ? 'is-hidden' : ''} ${draggedId === item.id ? 'is-dragging' : ''}`}
+                  draggable
+                  onDragStart={(event) => handleDragStart(event, item.id)}
+                  onDragEnd={() => setDraggedId(null)}
+                  onDragOver={(event) => event.preventDefault()}
+                  onDrop={(event) => handleDrop(event, item.id)}
+                >
+                  <GripVertical size={18} className="drag-handle" />
+                  <div>
+                    <strong>{item.label}</strong>
+                    <span>{item.path}</span>
+                  </div>
+                  {item.required ? (
+                    <span className="required-pill">Obowiązkowe</span>
+                  ) : (
+                    <button
+                      type="button"
+                      className="visibility-button"
+                      onClick={() => toggleItem(item.id)}
+                      aria-label={hidden ? `Pokaż ${item.label}` : `Ukryj ${item.label}`}
+                    >
+                      {hidden ? <EyeOff size={16} /> : <Eye size={16} />}
+                      {hidden ? 'Ukryte' : 'Widoczne'}
+                    </button>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
