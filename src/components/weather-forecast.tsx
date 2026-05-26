@@ -9,11 +9,12 @@ type ForecastItem = {
 type Props = {
   city: string
   apiKey: string
+  compact?: boolean
 }
 
 const daysPl = ['ndz.', 'pon.', 'wt.', 'śr.', 'czw.', 'pt.', 'sob.']
 
-export default function WeatherForecast({ city, apiKey }: Props) {
+export default function WeatherForecast({ city, apiKey, compact = false }: Props) {
   const [items, setItems] = useState<ForecastItem[]>([])
 
   useEffect(() => {
@@ -60,13 +61,13 @@ export default function WeatherForecast({ city, apiKey }: Props) {
   }, [city, apiKey])
 
   return (
-    <div className="widget forecast-widget">
+    <div className={compact ? 'forecast-widget forecast-widget-compact' : 'widget forecast-widget'}>
       <h3>Prognoza 5 dni</h3>
       <div className="forecast-row">
         {items.map((x, i) => (
           <div className="forecast-item" key={i}>
             <div className="muted small">{x.day}</div>
-            <img src={`https://openweathermap.org/img/wn/${x.icon}.png`} alt="" width={32} height={32} />
+            <img src={`https://openweathermap.org/img/wn/${x.icon}.png`} alt="" width={compact ? 26 : 32} height={compact ? 26 : 32} />
             <div className="value">{x.temp}°C</div>
           </div>
         ))}
