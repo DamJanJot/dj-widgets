@@ -51,7 +51,7 @@ export default function RSSNewsWidget({ feedUrl }: RSSNewsWidgetProps) {
           return
         }
 
-        const news = data.items.slice(0, 8).map((item: any) => ({
+        const news = data.items.slice(0, 7).map((item: any) => ({
           title: item.title,
           link: item.link,
           pubDate: formatDate(item.pubDate),
@@ -70,7 +70,6 @@ export default function RSSNewsWidget({ feedUrl }: RSSNewsWidgetProps) {
 
   return (
     <div className="news-widget">
-      <h2 className="widget-title">Aktualności</h2>
       {error ? (
         <p className="news-error">{error}</p>
       ) : (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ExternalLink, ShieldAlert } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 
 interface Article {
   title: string
@@ -86,7 +86,7 @@ export default function WarNewsWidget() {
         })
 
         const source = filtered.length ? filtered : items
-        const news = source.slice(0, 8).map((item: any) => ({
+        const news = source.slice(0, 7).map((item: any) => ({
           title: item.title,
           link: item.link,
           pubDate: formatDate(item.pubDate),
@@ -106,10 +106,6 @@ export default function WarNewsWidget() {
 
   return (
     <div className="news-widget">
-      <div className="section-heading">
-        <ShieldAlert size={22} />
-        <h2 className="widget-title">Działania zbrojne</h2>
-      </div>
       {error && <p className="news-note">{error}</p>}
       <div className="news-list">
         {articles.map((article, idx) => (
