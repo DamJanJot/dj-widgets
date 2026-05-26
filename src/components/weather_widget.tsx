@@ -1,53 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { CloudSun, Droplets, Wind } from 'lucide-react'
 
 interface WeatherWidgetProps {
-  city: string;
-  apiKey: string;
+  city: string
+  apiKey: string
 }
 
-const WeatherWidget: React.FC<WeatherWidgetProps> = ({ city, apiKey }) => {
-  const [temperature, setTemperature] = useState<number | null>(null);
-  const [clouds, setClouds] = useState<number | null>(null);
-  const [icon, setIcon] = useState<string | null>(null);
+type WeatherState = {
+  temperature: number
+  clouds: number
+  humidity: number
+  wind: number
+  description: string
+}
+
+export default function WeatherWidget({ city, apiKey }: WeatherWidgetProps) {
+  const [weather, setWeather] = useState<WeatherState | null>(null)
 
   useEffect(() => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
-      .then(res => {
-        console.log('Dane z API:', res.data);  // Dodane logowanie do sprawdzenia co przychodzi
-
-        setTemperature(Math.round(res.data.main.temp));
-        setClouds(res.data.clouds?.all ?? 0); // Jeśli clouds.all nie istnieje, da 0
-        setIcon(res.data.weather?.[0]?.icon);
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pl`)
+      .then((res) => {
+        setWeather({
+          temperature: Math.round(res.data.main.temp),
+          clouds: res.data.clouds?.all ?? 0,
+          humidity: res.data.main?.humidity ?? 0,
+          wind: Math.round((res.data.wind?.speed ?? 0) * 10) / 10,
+          description: res.data.weather?.[0]?.description ?? 'pogoda',
+        })
       })
-      .catch(err => console.error('Błąd pobierania pogody:', err));
-  }, [city, apiKey]);
+      .catch(() => setWeather(null))
+  }, [city, apiKey])
 
   return (
-    <div className="bg-neutral-900 text-white rounded-xl p-4 w-48 flex flex-col items-center shadow-xl">
-      <h2 className="text-lg font-medium mb-4">{city}</h2>
-      <div className="flex items-center justify-between w-full mb-4">
-        <span className="text-3xl">{temperature !== null ? `${temperature}` : '--'}&#176;C</span>
-        <div className="flex items-center ml-2">
-          <span>&#9729; {clouds !== null ? `${clouds}%` : '--'}</span>
-        </div>
+    <div className="weather-inline">
+      <div>
+        <div className="weather-city">{city}</div>
+        <div className="weather-desc">{weather?.description ?? 'Ładowanie pogody'}</div>
       </div>
 
-      {/* <div className="mt-4">
-        {icon ? (
-          <img
-            src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-            alt="weather icon"
-            className="h-10 w-10"
-          />
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2a10 10 0 000 20 10 10 0 000-20zM9 12a3 3 0 116 0 3 3 0 01-6 0z" />
-          </svg>
-        )}
-      </div> */}
-    </div>
-  );
-};
+      <div className="weather-main">
+        <CloudSun size={30} />
+        <strong>{weather ? `${weather.temperature}°C` : '--°C'}</strong>
+      </div>
 
-export default WeatherWidget;
+      <div className="weather-mini-grid">
+        <span><CloudSun size={14} /> {weather ? `${weather.clouds}%` : '--'}</span>
+        <span><Droplets size={14} /> {weather ? `${weather.humidity}%` : '--'}</span>
+        <span><Wind size={14} /> {weather ? `${weather.wind} m/s` : '--'}</span>
+      </div>
+    </div>
+  )
+}

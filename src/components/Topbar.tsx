@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ChevronLeft, ChevronRight, Bell } from 'lucide-react'
+import { Bell, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import UserMenuContent from './user-menu-content'
 
@@ -11,11 +11,15 @@ const TITLE: Record<string, string> = {
   '/news': 'Aktualności',
   '/markets': 'Rynki',
   '/docs': 'Documentation',
+  '/profile': 'Profil',
+  '/profile/edit': 'Edytuj profil',
+  '/settings': 'Ustawienia',
+  '/repo': 'Repository',
 }
 
 export default function Topbar() {
   const loc = useLocation()
-  const title = TITLE[loc.pathname] ?? 'Orbi'
+  const title = TITLE[loc.pathname] ?? 'Orbitum'
   const user = { name: 'Damian', email: 'damian@example.com' }
   const initials = user.name
     .split(' ')
@@ -44,7 +48,8 @@ export default function Topbar() {
     const onDoc = (e: MouseEvent) => {
       if (!wrapRef.current) return
       if (!wrapRef.current.contains(e.target as Node)) {
-        setMenuOpen(false); setNotifOpen(false)
+        setMenuOpen(false)
+        setNotifOpen(false)
       }
     }
     document.addEventListener('mousedown', onDoc)
@@ -64,16 +69,13 @@ export default function Topbar() {
   }
 
   const ArrowIcon = isMobile
-    ? (mobileOpen ? <ChevronLeft size={18}/> : <ChevronRight size={18}/>)
-    : (collapsed ? <ChevronRight size={18}/> : <ChevronLeft size={18}/>)
+    ? mobileOpen ? <ChevronLeft size={18} /> : <ChevronRight size={18} />
+    : collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />
 
-  // Strzałka: gdy mobile + sidebar otwarty -> zawsze po prawej krawędzi sidebara
   const arrowStyle = (isMobile && mobileOpen)
     ? { position: 'fixed' as const, left: 'calc(var(--sidebar-w) + 8px)', top: 10, zIndex: 1201 }
     : undefined
 
-  // Gdy mobile + sidebar otwarty -> przesuń całą zawartość topbara w prawo,
-  // więc tytuł pozostaje na środku WIDOCZNEJ części, nie wchodzi pod sidebar.
   const headerStyle = (isMobile && mobileOpen)
     ? { paddingLeft: 'calc(var(--sidebar-w))' }
     : undefined
@@ -82,10 +84,9 @@ export default function Topbar() {
     <>
       {isMobile && mobileOpen && <div className="scrim show" onClick={toggleSidebar} />}
 
-      {/* GRID: [lewo][środek][prawo] */}
       <header className="topbar grid3" style={headerStyle}>
         <div className="tb-left">
-          <button className="btn-icon" aria-label="Toggle sidebar" onClick={toggleSidebar} title="Pokaż/ukryj nawigację" style={arrowStyle}>
+          <button className="btn-icon" aria-label="Przełącz nawigację" onClick={toggleSidebar} title="Pokaż/ukryj nawigację" style={arrowStyle}>
             {ArrowIcon}
           </button>
         </div>
@@ -94,7 +95,7 @@ export default function Topbar() {
 
         <div className="tb-right" ref={wrapRef}>
           <button className="btn-icon" aria-label="Powiadomienia" onClick={() => { setNotifOpen(v => !v); setMenuOpen(false) }}>
-            <Bell size={18}/>
+            <Bell size={18} />
           </button>
 
           {notifOpen && (

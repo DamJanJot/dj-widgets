@@ -1,20 +1,19 @@
+import WarNewsWidget from '@/components/war-news-widget'
+import RSSNewsWidget from '@/components/rss-news-widget'
 
-import WarNewsWidget from '@/components/war-news-widget';
-import RSSNewsWidget from '@/components/rss-news-widget';
-
-export default function News(){
+export default function News() {
   return (
-    <div className="content">
-      <h1 className="page-title">Aktualnosci</h1>
+    <section className="page-shell news-page">
+      <h1 className="page-title">Aktualności</h1>
       <div className="news-layout">
-        <div className="card">
-            <RSSNewsWidget feedUrl="https://wiadomosci.wp.pl/rss.xml" />
+        <div className="card news-card">
+          <RSSNewsWidget feedUrl="https://wiadomosci.wp.pl/rss.xml" />
         </div>
 
-        <div className="card">
+        <div className="card news-card">
           <WarNewsWidget />
         </div>
       </div>
-    </div>
+    </section>
   )
 }

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Info, LayoutDashboard, Newspaper, LineChart, BookText } from 'lucide-react'
+import { BookText, Info, LayoutDashboard, LineChart, Newspaper, Settings, User } from 'lucide-react'
 
 export default function Sidebar() {
   return (
@@ -29,6 +29,16 @@ export default function Sidebar() {
           <BookText className="nav-icon" size={18} />
           <span className="link-text">Documentation</span>
         </NavLink>
+
+        <NavLink to="/profile" title="Profil" className="nav-item">
+          <User className="nav-icon" size={18} />
+          <span className="link-text">Profil</span>
+        </NavLink>
+
+        <NavLink to="/settings" title="Ustawienia" className="nav-item">
+          <Settings className="nav-icon" size={18} />
+          <span className="link-text">Ustawienia</span>
+        </NavLink>
       </nav>
 
       <div className="side-footer">
@@ -36,13 +46,11 @@ export default function Sidebar() {
           <BookText className="nav-icon" size={18} />
           <span className="link-text">Repository</span>
         </NavLink>
-        <NavLink to="/info" title="Info " className="nav-item">
-          <Info  className="nav-icon" size={18} />
-          <span className="link-text">Info </span>
+        <NavLink to="/info" title="Info" className="nav-item">
+          <Info className="nav-icon" size={18} />
+          <span className="link-text">Info</span>
         </NavLink>
       </div>
     </aside>
   )
 }
-
-

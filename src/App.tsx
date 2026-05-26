@@ -5,6 +5,10 @@ import Dashboard from './pages/Dashboard'
 import News from './pages/News'
 import Markets from './pages/Markets'
 import Docs from './pages/Docs'
+import Profile from './pages/Profile'
+import EditProfile from './pages/EditProfile'
+import Settings from './pages/Settings'
+import Repository from './pages/Repository'
 
 export default function App() {
   return (
@@ -19,6 +23,11 @@ export default function App() {
             <Route path="/news" element={<News />} />
             <Route path="/markets" element={<Markets />} />
             <Route path="/docs" element={<Docs />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/edit" element={<EditProfile />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/repo" element={<Repository />} />
+            <Route path="/info" element={<Docs />} />
           </Routes>
         </div>
       </div>

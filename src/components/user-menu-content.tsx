@@ -27,7 +27,7 @@ export default function UserMenuContent({ user, onLogout, onClose }: Props) {
         </div>
         <div className="dropdown-user">
           <strong>{user?.name ?? 'Użytkownik'}</strong>
-          <div className="muted small">{user?.email ?? '—'}</div>
+          <div className="muted small">{user?.email ?? '-'}</div>
         </div>
       </div>
 
