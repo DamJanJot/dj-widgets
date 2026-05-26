@@ -1,70 +1,104 @@
-# 🧩 DJ Dashboard (React + Vite + TypeScript)
+# Orbitum Dashboard
 
-A lightweight dashboard template with a **sidebar navigation** and a **dashboard view** (tiles + charts).  
-Built with **React, Vite, and TypeScript**, designed for quick prototyping and easy API integration.
+Panel webowy zbudowany w React, Vite i TypeScript. Aplikacja działa jako rozbudowany dashboard demo z widokami pogody, kalendarza, aktualności, rynków, profilu i ustawień.
 
----
+Projekt jest obecnie rozwijany wizualnie i funkcjonalnie. Integracja z docelową bazą danych jest świadomie odłożona, żeby nie psuć stabilnej wersji demo.
 
-## 🚀 Quick Start
+## Funkcje
+
+- Dashboard z godziną, datą, wschodem i zachodem słońca.
+- Pogoda dla Warszawy oraz kompaktowa prognoza 5 dni.
+- Kalendarz miesięczny z polskimi świętami, zaznaczaniem dnia i własnymi wydarzeniami.
+- Aktualności RSS oraz osobna lista wiadomości o działaniach zbrojnych.
+- Rynki: złoto, waluty i krypto.
+- Przełączanie motywu: ciemny, jasny, systemowy.
+- Konfigurowalny sidebar: widoczność i kolejność paneli zapisywana lokalnie.
+- Profil, edycja profilu, ustawienia, centrum operacyjne i repository.
+- Lokalne notatki/zadania w centrum operacyjnym.
+
+## Dane i tryb demo
+
+Aplikacja korzysta z kilku publicznych API:
+
+- OpenWeatherMap dla pogody i prognozy.
+- NBP dla kursów walut i ceny złota.
+- CoinGecko dla krypto.
+- RSS2JSON jako pośrednik dla kanałów RSS.
+
+Część ustawień użytkownika jest zapisywana w `localStorage`, między innymi:
+
+- motyw,
+- konfiguracja sidebaru,
+- wydarzenia w kalendarzu,
+- notatki i zadania.
+
+Na ten moment aplikacja nie wymaga połączenia z bazą danych.
+
+## Uruchamianie
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
-
-# Production build
-npm run build && npm run preview
 ```
 
----
+Domyślnie Vite uruchamia aplikację lokalnie pod adresem:
 
-## 📂 Project Structure
-
+```text
+http://localhost:5173
 ```
+
+Build produkcyjny:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Struktura projektu
+
+```text
 src/
- ├─ components/     # Cards & widgets
- ├─ pages/          # Dashboard + placeholders
- └─ services/
-     └─ mock.ts     # Mock data (can be replaced with real API calls)
+  components/     Widgety i elementy UI
+  hooks/          Hooki aplikacji, np. motyw i konfiguracja sidebaru
+  pages/          Widoki aplikacji
+  api/            Klient API
+  services/       Dane pomocnicze/mock
 ```
 
----
+## Najważniejsze widoki
 
-## 🔌 API Integration
+- `/dashboard` - główny pulpit.
+- `/news` - aktualności i działania zbrojne.
+- `/markets` - złoto, waluty, krypto.
+- `/operations` - centrum operacyjne, notatki i alerty.
+- `/profile` - profil użytkownika.
+- `/profile/edit` - edycja profilu.
+- `/settings` - motyw i konfiguracja sidebaru.
+- `/repo` - informacje o repozytorium.
 
-Instead of using mocks from `services/mock.ts`, connect your own backend:
+## Deployment na Vercel
 
-- Replace mock requests with real API calls (Laravel, Express, etc.)
-- Use Vite environment variables (e.g. `VITE_API_URL`)
-- Make sure your backend handles **CORS**
+Ustawienia projektu:
 
----
+```text
+Build command: npm run build
+Output directory: dist
+```
 
-## ☁️ Deploy (Vercel)
+## Stack
 
-1. Create a new project from this repo
-2. Set build command:  
-   ```bash
-   npm run build
-   ```
-3. Set output directory:  
-   ```
-   dist
-   ```
+- React
+- TypeScript
+- Vite
+- Chart.js
+- Recharts
+- Lucide React
+- Radix UI
 
----
+## Status
 
-## 🛠 Tech Stack
+Projekt jest w fazie aktywnej rozbudowy. Aktualna wersja skupia się na warstwie UI/UX i stabilnym trybie demo. Integracja z backendem lub bazą danych może zostać dodana później jako osobny etap.
 
-- ⚡ [Vite](https://vitejs.dev/) — fast build tool
-- ⚛ [React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/)
-- 🎨 TailwindCSS (optional styling)
-- 📊 Chart.js / Recharts (widgets & charts)
+## Licencja
 
----
-
-## 📜 License
-
-MIT — feel free to use and modify.
+MIT
