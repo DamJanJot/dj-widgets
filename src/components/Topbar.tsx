@@ -15,6 +15,7 @@ const TITLE: Record<string, string> = {
   '/profile/edit': 'Edytuj profil',
   '/settings': 'Ustawienia',
   '/repo': 'Repository',
+  '/operations': 'Centrum',
 }
 
 export default function Topbar() {

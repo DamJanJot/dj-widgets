@@ -2,6 +2,7 @@ import Clock from '../components/Clock'
 import MiniCalendar from '../components/MiniCalendar'
 import WeatherWidget from '@/components/weather_widget'
 import WeatherForecast from '@/components/weather-forecast'
+import CommandCenter from '@/components/CommandCenter'
 
 const WEATHER_API_KEY = 'af8b3311443695ee4563e7d85bec9253'
 
@@ -21,8 +22,13 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="card">
-        <WeatherForecast city="Warszawa" apiKey={WEATHER_API_KEY} />
+      <div className="dashboard-lower-grid">
+        <div className="card">
+          <WeatherForecast city="Warszawa" apiKey={WEATHER_API_KEY} />
+        </div>
+        <div className="card">
+          <CommandCenter />
+        </div>
       </div>
     </section>
   )

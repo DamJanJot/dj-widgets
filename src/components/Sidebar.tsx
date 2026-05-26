@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { BookText, Info, LayoutDashboard, LineChart, Newspaper, Settings, User } from 'lucide-react'
+import { BookText, Info, LayoutDashboard, LineChart, Newspaper, RadioTower, Settings, User } from 'lucide-react'
 
 export default function Sidebar() {
   return (
@@ -38,6 +38,11 @@ export default function Sidebar() {
         <NavLink to="/settings" title="Ustawienia" className="nav-item">
           <Settings className="nav-icon" size={18} />
           <span className="link-text">Ustawienia</span>
+        </NavLink>
+
+        <NavLink to="/operations" title="Centrum" className="nav-item">
+          <RadioTower className="nav-icon" size={18} />
+          <span className="link-text">Centrum</span>
         </NavLink>
       </nav>
 
