@@ -15,6 +15,7 @@ export default function Dashboard() {
         <div className="card dashboard-clock-card">
           <Clock />
           <WeatherWidget city="Warszawa" apiKey={WEATHER_API_KEY} />
+          <WeatherForecast city="Warszawa" apiKey={WEATHER_API_KEY} compact />
         </div>
 
         <div className="card">
@@ -23,9 +24,6 @@ export default function Dashboard() {
       </div>
 
       <div className="dashboard-lower-grid">
-        <div className="card">
-          <WeatherForecast city="Warszawa" apiKey={WEATHER_API_KEY} />
-        </div>
         <div className="card">
           <CommandCenter />
         </div>
