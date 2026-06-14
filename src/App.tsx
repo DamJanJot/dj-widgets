@@ -10,6 +10,7 @@ import EditProfile from './pages/EditProfile'
 import Settings from './pages/Settings'
 import Repository from './pages/Repository'
 import Operations from './pages/Operations'
+import Notes from './pages/Notes'
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/repo" element={<Repository />} />
             <Route path="/info" element={<Docs />} />
             <Route path="/operations" element={<Operations />} />
+            <Route path="/notes" element={<Notes />} />
           </Routes>
         </div>
       </div>

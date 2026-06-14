@@ -1,5 +1,4 @@
-import { BellRing, CheckCircle2, Gauge, RadioTower, ShieldAlert } from 'lucide-react'
-import QuickNotes from '@/components/QuickNotes'
+import { BellRing, Gauge, RadioTower, ShieldAlert } from 'lucide-react'
 
 const alerts = [
   { title: 'Złoto', value: 'Powiadom przy zmianie powyżej 2%', icon: BellRing },
@@ -10,7 +9,7 @@ const alerts = [
 const timeline = [
   'Odświeżono dashboard i układ rynków',
   'Dodano źródła działań zbrojnych',
-  'Włączono notatki lokalne',
+  'Wydzielono osobny panel notatek i zadań',
 ]
 
 export default function Operations() {
@@ -18,18 +17,7 @@ export default function Operations() {
     <section className="page-shell operations-page">
       <h1 className="page-title">Centrum</h1>
 
-      <div className="operations-layout">
-        <div className="card operations-main">
-          <div className="section-heading split">
-            <div>
-              <h2 className="panel-title">Notatki i zadania</h2>
-              <p className="muted small">Zapisują się lokalnie w tej przeglądarce.</p>
-            </div>
-            <CheckCircle2 size={22} />
-          </div>
-          <QuickNotes />
-        </div>
-
+      <div className="operations-layout operations-layout-compact">
         <div className="card operations-panel">
           <div className="section-heading">
             <RadioTower size={22} />
@@ -52,9 +40,9 @@ export default function Operations() {
           </div>
         </div>
 
-        <div className="card operations-panel wide">
+        <div className="card operations-panel">
           <h2 className="panel-title">Ostatnie działania</h2>
-          <div className="timeline-list">
+          <div className="timeline-list timeline-list-vertical">
             {timeline.map((item) => (
               <div className="timeline-item" key={item}>
                 <span />

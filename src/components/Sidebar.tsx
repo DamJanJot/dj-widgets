@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { BookText, Info, LayoutDashboard, LineChart, Newspaper, RadioTower, Settings, User } from 'lucide-react'
+import { BookText, Info, LayoutDashboard, LineChart, ListTodo, Newspaper, RadioTower } from 'lucide-react'
 import { useSidebarConfig, type SidebarItemId } from '@/hooks/use-sidebar-config'
 
 const icons: Record<SidebarItemId, typeof LayoutDashboard> = {
@@ -7,18 +7,16 @@ const icons: Record<SidebarItemId, typeof LayoutDashboard> = {
   news: Newspaper,
   markets: LineChart,
   docs: BookText,
-  profile: User,
   operations: RadioTower,
+  notes: ListTodo,
   repo: BookText,
   info: Info,
-  settings: Settings,
 }
 
 export default function Sidebar() {
   const { visibleItems } = useSidebarConfig()
-  const mainItems = visibleItems.filter((item) => item.id !== 'settings')
-  const footerItems = mainItems.filter((item) => item.id === 'repo' || item.id === 'info')
-  const topItems = mainItems.filter((item) => item.id !== 'repo' && item.id !== 'info')
+  const footerItems = visibleItems.filter((item) => item.id === 'repo' || item.id === 'info')
+  const topItems = visibleItems.filter((item) => item.id !== 'repo' && item.id !== 'info')
 
   return (
     <aside className="sidebar" id="sidebar">

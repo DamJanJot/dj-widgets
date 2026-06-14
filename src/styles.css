@@ -560,20 +560,28 @@ body.sidebar-collapsed .link-text{display:none}
 
 .time-pill strong{
   display:block;
-  font-size:.98rem;
+  min-width:0;
+  font-size:clamp(.78rem,1.1vw,.98rem);
   font-variant-numeric:tabular-nums;
   white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .weather-inline{
-  display:grid;
-  grid-template-columns:1fr auto minmax(210px,.65fr);
+  display:flex;
+  flex-wrap:wrap;
   align-items:center;
   gap:16px;
   padding:14px 16px;
   border:1px solid rgba(255,255,255,.1);
   border-radius:8px;
   background:rgba(255,255,255,.025);
+}
+
+.weather-location{
+  flex:1 1 150px;
+  min-width:0;
 }
 
 .weather-city{
@@ -592,12 +600,16 @@ body.sidebar-collapsed .link-text{display:none}
   align-items:center;
   gap:10px;
   font-size:30px;
+  flex:0 0 auto;
+  min-width:0;
 }
 
 .weather-mini-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
+  flex:1 1 210px;
+  min-width:0;
 }
 
 .weather-mini-grid span{
@@ -610,7 +622,16 @@ body.sidebar-collapsed .link-text{display:none}
   border-radius:8px;
   color:#d7def2;
   background:rgba(255,255,255,.02);
+  min-width:0;
   white-space:nowrap;
+  overflow:hidden;
+}
+
+.weather-mini-grid b{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-weight:500;
 }
 
 .forecast-widget h3,
@@ -990,6 +1011,14 @@ body.sidebar-collapsed .link-text{display:none}
   gap:16px;
 }
 
+.operations-layout-compact{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.notes-panel{
+  width:min(820px,100%);
+}
+
 .operations-main,
 .operations-panel{
   min-height:0;
@@ -1302,6 +1331,10 @@ body.sidebar-collapsed .link-text{display:none}
   gap:10px;
 }
 
+.timeline-list-vertical{
+  grid-template-columns:1fr;
+}
+
 .timeline-item{
   display:flex;
   align-items:flex-start;
@@ -1432,6 +1465,24 @@ html.light .quick-actions a{
   }
 }
 
+@media (max-width:1380px) and (min-width:901px){
+  .clock-strip{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .weather-inline{
+    gap:10px;
+  }
+
+  .weather-main{
+    font-size:26px;
+  }
+
+  .weather-mini-grid{
+    flex-basis:100%;
+  }
+}
+
 @media (max-width:700px){
   .page-title{
     font-size:28px;
@@ -1479,7 +1530,7 @@ html.light .quick-actions a{
   }
 
   .weather-mini-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(3,minmax(0,1fr));
   }
 
   .profile-hero{
