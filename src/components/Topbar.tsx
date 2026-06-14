@@ -16,6 +16,7 @@ const TITLE: Record<string, string> = {
   '/settings': 'Ustawienia',
   '/repo': 'Repository',
   '/operations': 'Centrum',
+  '/notes': 'Notatki i zadania',
 }
 
 export default function Topbar() {

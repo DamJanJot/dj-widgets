@@ -10,7 +10,6 @@ const timeCards = [
 
 export default function Clock() {
   const [now, setNow] = useState(new Date())
-
   const sunrise = '05:44:32'
   const sunset = '19:27:53'
 
@@ -19,11 +18,9 @@ export default function Clock() {
     return () => clearInterval(id)
   }, [])
 
-  const dateStr = now.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })
-  const timeStr = now.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
   const values = {
-    time: timeStr,
-    date: dateStr,
+    time: now.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+    date: now.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' }),
     sunrise,
     sunset,
   }

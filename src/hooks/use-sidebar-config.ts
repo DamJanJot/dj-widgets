@@ -5,11 +5,10 @@ export type SidebarItemId =
   | 'news'
   | 'markets'
   | 'docs'
-  | 'profile'
   | 'operations'
+  | 'notes'
   | 'repo'
   | 'info'
-  | 'settings'
 
 export type SidebarItemConfig = {
   id: SidebarItemId
@@ -28,11 +27,10 @@ export const sidebarItems: SidebarItemConfig[] = [
   { id: 'news', label: 'Aktualności', path: '/news' },
   { id: 'markets', label: 'Rynki', path: '/markets' },
   { id: 'docs', label: 'Documentation', path: '/docs' },
-  { id: 'profile', label: 'Profil', path: '/profile' },
   { id: 'operations', label: 'Centrum', path: '/operations' },
+  { id: 'notes', label: 'Notatki i zadania', path: '/notes' },
   { id: 'repo', label: 'Repository', path: '/repo' },
   { id: 'info', label: 'Info', path: '/info' },
-  { id: 'settings', label: 'Ustawienia', path: '/settings', required: true },
 ]
 
 const STORAGE_KEY = 'orbitum.sidebarSettings'
@@ -108,11 +106,9 @@ export function useSidebarConfig() {
   const toggleItem = useCallback((id: SidebarItemId) => {
     const item = sidebarItems.find((entry) => entry.id === id)
     if (item?.required) return
-
     const hidden = settings.hidden.includes(id)
       ? settings.hidden.filter((entry) => entry !== id)
       : [...settings.hidden, id]
-
     updateSettings({ ...settings, hidden })
   }, [settings, updateSettings])
 
@@ -121,16 +117,13 @@ export function useSidebarConfig() {
     const fromIndex = settings.order.indexOf(fromId)
     const toIndex = settings.order.indexOf(toId)
     if (fromIndex < 0 || toIndex < 0) return
-
     const order = [...settings.order]
     const [moved] = order.splice(fromIndex, 1)
     order.splice(toIndex, 0, moved)
     updateSettings({ ...settings, order })
   }, [settings, updateSettings])
 
-  const resetSidebar = useCallback(() => {
-    updateSettings(normalizeSettings())
-  }, [updateSettings])
+  const resetSidebar = useCallback(() => updateSettings(normalizeSettings()), [updateSettings])
 
   return { settings, items, visibleItems, toggleItem, moveItem, resetSidebar } as const
 }

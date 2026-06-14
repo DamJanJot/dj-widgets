@@ -34,7 +34,7 @@ export default function WeatherWidget({ city, apiKey }: WeatherWidgetProps) {
 
   return (
     <div className="weather-inline">
-      <div>
+      <div className="weather-location">
         <div className="weather-city">{city}</div>
         <div className="weather-desc">{weather?.description ?? 'Ładowanie pogody'}</div>
       </div>
@@ -45,9 +45,9 @@ export default function WeatherWidget({ city, apiKey }: WeatherWidgetProps) {
       </div>
 
       <div className="weather-mini-grid">
-        <span><CloudSun size={14} /> {weather ? `${weather.clouds}%` : '--'}</span>
-        <span><Droplets size={14} /> {weather ? `${weather.humidity}%` : '--'}</span>
-        <span><Wind size={14} /> {weather ? `${weather.wind} m/s` : '--'}</span>
+        <span title="Zachmurzenie"><CloudSun size={14} /> <b>{weather ? `${weather.clouds}%` : '--'}</b></span>
+        <span title="Wilgotność"><Droplets size={14} /> <b>{weather ? `${weather.humidity}%` : '--'}</b></span>
+        <span title="Prędkość wiatru"><Wind size={14} /> <b>{weather ? `${weather.wind} m/s` : '--'}</b></span>
       </div>
     </div>
   )
