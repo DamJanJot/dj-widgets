@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Activity, ArrowRight, BellRing, Newspaper, TrendingUp } from 'lucide-react'
+import { Activity, ArrowRight, BellRing, ListTodo, Newspaper, TrendingUp } from 'lucide-react'
 
 const signals = [
   { label: 'Pogoda', value: 'Warszawa aktywna', tone: 'neutral' },
@@ -30,6 +30,7 @@ export default function CommandCenter() {
       <div className="quick-actions">
         <Link to="/markets"><TrendingUp size={16} /> Rynki <ArrowRight size={14} /></Link>
         <Link to="/news"><Newspaper size={16} /> Aktualności <ArrowRight size={14} /></Link>
+        <Link to="/notes"><ListTodo size={16} /> Notatki <ArrowRight size={14} /></Link>
         <Link to="/operations"><BellRing size={16} /> Centrum <ArrowRight size={14} /></Link>
       </div>
     </div>
