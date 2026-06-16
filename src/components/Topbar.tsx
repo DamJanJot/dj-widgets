@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { Bell, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Bell, ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import UserMenuContent from './user-menu-content'
+import CommandPalette from './CommandPalette'
 
 const MQ_MOBILE = '(max-width: 900px)'
 
@@ -36,6 +37,7 @@ export default function Topbar() {
   const [mobileOpen, setMobileOpen] = useState(!!document.getElementById('sidebar')?.classList.contains('open'))
   const [menuOpen, setMenuOpen] = useState(false)
   const [notifOpen, setNotifOpen] = useState(false)
+  const [commandOpen, setCommandOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -96,6 +98,10 @@ export default function Topbar() {
         <div className="tb-center">{title}</div>
 
         <div className="tb-right" ref={wrapRef}>
+          <button className="btn-icon" aria-label="Szybka nawigacja" title="Szybka nawigacja" onClick={() => { setCommandOpen(true); setMenuOpen(false); setNotifOpen(false) }}>
+            <Search size={18} />
+          </button>
+
           <button className="btn-icon" aria-label="Powiadomienia" onClick={() => { setNotifOpen(v => !v); setMenuOpen(false) }}>
             <Bell size={18} />
           </button>
@@ -126,6 +132,7 @@ export default function Topbar() {
           </div>
         </div>
       </header>
+      <CommandPalette open={commandOpen} onOpenChange={setCommandOpen} />
     </>
   )
 }
