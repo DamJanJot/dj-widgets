@@ -3,6 +3,7 @@ import MiniCalendar from '../components/MiniCalendar'
 import WeatherWidget from '@/components/weather_widget'
 import WeatherForecast from '@/components/weather-forecast'
 import CommandCenter from '@/components/CommandCenter'
+import RecentViews from '@/components/RecentViews'
 
 const WEATHER_API_KEY = 'af8b3311443695ee4563e7d85bec9253'
 
@@ -26,6 +27,9 @@ export default function Dashboard() {
       <div className="dashboard-lower-grid">
         <div className="card">
           <CommandCenter />
+        </div>
+        <div className="card">
+          <RecentViews />
         </div>
       </div>
     </section>

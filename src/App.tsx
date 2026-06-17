@@ -11,12 +11,14 @@ import Settings from './pages/Settings'
 import Repository from './pages/Repository'
 import Operations from './pages/Operations'
 import Notes from './pages/Notes'
+import RouteMemory from './components/RouteMemory'
 
 export default function App() {
   return (
     <div className="layout">
       <Sidebar />
       <div className="main">
+        <RouteMemory />
         <Topbar />
         <div className="content">
           <Routes>

@@ -1,25 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BookText, CalendarDays, LayoutDashboard, LineChart, ListTodo, Newspaper, RadioTower, Search, Settings, User, X } from 'lucide-react'
-
-type Command = {
-  label: string
-  path: string
-  hint: string
-  icon: typeof Search
-}
-
-const commands: Command[] = [
-  { label: 'Dashboard', path: '/dashboard', hint: 'Pogoda, kalendarz i centrum', icon: LayoutDashboard },
-  { label: 'Aktualności', path: '/news', hint: 'RSS i działania zbrojne', icon: Newspaper },
-  { label: 'Rynki', path: '/markets', hint: 'Złoto, waluty i krypto', icon: LineChart },
-  { label: 'Notatki i zadania', path: '/notes', hint: 'Lokalna lista zadań', icon: ListTodo },
-  { label: 'Centrum', path: '/operations', hint: 'Alerty i ostatnie działania', icon: RadioTower },
-  { label: 'Profil', path: '/profile', hint: 'Informacje użytkownika', icon: User },
-  { label: 'Ustawienia', path: '/settings', hint: 'Motyw i sidebar', icon: Settings },
-  { label: 'Documentation', path: '/docs', hint: 'Opis modułów', icon: BookText },
-  { label: 'Kalendarz', path: '/dashboard', hint: 'Święta i wydarzenia', icon: CalendarDays },
-]
+import { Search, X } from 'lucide-react'
+import { appCommands, getCommandByPath, readRecentViews, rememberView } from '@/lib/navigation'
 
 type Props = {
   open: boolean
@@ -29,6 +11,7 @@ type Props = {
 export default function CommandPalette({ open, onOpenChange }: Props) {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
+  const [recentPaths, setRecentPaths] = useState<string[]>(() => readRecentViews())
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -44,18 +27,26 @@ export default function CommandPalette({ open, onOpenChange }: Props) {
   }, [onOpenChange, open])
 
   useEffect(() => {
-    if (open) setQuery('')
+    if (!open) return
+    setQuery('')
+    setRecentPaths(readRecentViews())
   }, [open])
 
   const filtered = useMemo(() => {
     const value = query.trim().toLowerCase()
-    if (!value) return commands
-    return commands.filter((command) =>
+    if (!value) return appCommands
+    return appCommands.filter((command) =>
       `${command.label} ${command.hint}`.toLowerCase().includes(value)
     )
   }, [query])
 
+  const recent = useMemo(
+    () => recentPaths.map((path) => getCommandByPath(path)).filter(Boolean).slice(0, 4),
+    [recentPaths]
+  )
+
   const run = (path: string) => {
+    rememberView(path)
     navigate(path)
     onOpenChange(false)
   }
@@ -74,7 +65,23 @@ export default function CommandPalette({ open, onOpenChange }: Props) {
           </button>
         </div>
 
+        {!query && recent.length > 0 && (
+          <div className="command-section">
+            <div className="command-section-title">Ostatnio</div>
+            {recent.map((command) => command && (
+              <button type="button" className="command-item" key={`recent-${command.path}`} onClick={() => run(command.path)}>
+                <command.icon size={18} />
+                <span>
+                  <strong>{command.label}</strong>
+                  <small>{command.hint}</small>
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+
         <div className="command-list">
+          {!query && <div className="command-section-title">Wszystkie</div>}
           {filtered.map((command) => (
             <button type="button" className="command-item" key={`${command.label}-${command.path}`} onClick={() => run(command.path)}>
               <command.icon size={18} />

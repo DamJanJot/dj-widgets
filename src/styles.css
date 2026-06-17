@@ -514,7 +514,7 @@ body.sidebar-collapsed .link-text{display:none}
 
 .dashboard-lower-grid{
   display:grid;
-  grid-template-columns:1fr;
+  grid-template-columns:minmax(0,1.3fr) minmax(320px,.7fr);
   gap:16px;
 }
 
@@ -782,6 +782,25 @@ body.sidebar-collapsed .link-text{display:none}
   padding:8px;
 }
 
+.command-section{
+  display:grid;
+  gap:6px;
+  padding:8px 8px 0;
+}
+
+.command-section + .command-list{
+  padding-top:6px;
+}
+
+.command-section-title{
+  color:var(--muted);
+  font-size:.76rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  padding:4px 4px 2px;
+}
+
 .command-item{
   display:grid;
   grid-template-columns:28px minmax(0,1fr);
@@ -817,6 +836,52 @@ body.sidebar-collapsed .link-text{display:none}
 .command-empty{
   margin:0;
   padding:12px;
+}
+
+.recent-views{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.recent-view-list{
+  display:grid;
+  gap:8px;
+}
+
+.recent-view-item{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) 18px;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  background:var(--panel-soft);
+}
+
+.recent-view-item:hover{
+  border-color:rgba(124,140,255,.36);
+}
+
+.recent-view-item span,
+.recent-view-item strong,
+.recent-view-item small{
+  display:block;
+  min-width:0;
+}
+
+.recent-view-item small{
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.recent-view-empty{
+  color:var(--muted);
+  border:1px dashed rgba(255,255,255,.14);
+  border-radius:8px;
+  padding:14px;
+  line-height:1.35;
 }
 
 .mini-calendar{
@@ -1461,6 +1526,8 @@ html.light .settings-row,
 html.light .quick-note,
 html.light .timeline-item,
 html.light .sidebar-sort-item,
+html.light .recent-view-item,
+html.light .recent-view-empty,
 html.light .forecast-item,
 html.light .crypto-list li{
   border-color:rgba(15,23,42,.1);
