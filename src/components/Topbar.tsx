@@ -98,7 +98,7 @@ export default function Topbar() {
         <div className="tb-center">{title}</div>
 
         <div className="tb-right" ref={wrapRef}>
-          <button className="btn-icon" aria-label="Szybka nawigacja" title="Szybka nawigacja" onClick={() => { setCommandOpen(true); setMenuOpen(false); setNotifOpen(false) }}>
+          <button className="btn-icon topbar-search" aria-label="Szybka nawigacja" title="Szybka nawigacja" onClick={() => { setCommandOpen(true); setMenuOpen(false); setNotifOpen(false) }}>
             <Search size={18} />
           </button>
 

@@ -69,14 +69,15 @@ body.sidebar-collapsed .link-text{display:none}
   align-items:center;
 }
 .tb-left{display:flex;align-items:center}
-.tb-center{justify-self:center;font-weight:600}
-.tb-right{display:flex;align-items:center;gap:12px;justify-self:end}
+.tb-center{justify-self:center;font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-right{display:flex;align-items:center;gap:8px;justify-self:end;flex-shrink:0}
 .topbar .right{display:flex;align-items:center;gap:12px}  /* dzwonek + avatar w jednej linii */
 .content{padding:16px;max-width:1400px;margin:0 auto;width:100%;min-height:calc(100vh - 56px);display:flex;flex-direction:column}
 
 /* buttons, avatar, dropdowny */
 .btn-icon{background:transparent;border:0;color:inherit;font-size:18px;cursor:pointer;padding:6px;border-radius:8px;transition:background .2s}
 .btn-icon:hover{background:var(--hover)}
+.topbar-search{display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 auto}
 .avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;border:0;background:var(--hover);cursor:pointer;padding:0}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .avatar.sm{width:32px;height:32px;cursor:default}
