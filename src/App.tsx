@@ -11,6 +11,7 @@ import Settings from './pages/Settings'
 import Repository from './pages/Repository'
 import Operations from './pages/Operations'
 import Notes from './pages/Notes'
+import DayPlan from './pages/DayPlan'
 import RouteMemory from './components/RouteMemory'
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/info" element={<Docs />} />
             <Route path="/operations" element={<Operations />} />
             <Route path="/notes" element={<Notes />} />
+            <Route path="/day-plan" element={<DayPlan />} />
           </Routes>
         </div>
       </div>

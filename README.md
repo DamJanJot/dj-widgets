@@ -1,6 +1,6 @@
 # Orbitum Dashboard
 
-Panel webowy zbudowany w React, Vite i TypeScript. Aplikacja działa jako rozbudowany dashboard demo z widokami pogody, kalendarza, aktualności, rynków, profilu i ustawień.
+Panel webowy zbudowany w React, Vite i TypeScript. Aplikacja działa jako rozbudowany dashboard demo z widokami pogody, kalendarza, planu dnia, aktualności, rynków, profilu i ustawień.
 
 Projekt jest obecnie rozwijany wizualnie i funkcjonalnie. Integracja z docelową bazą danych jest świadomie odłożona, żeby nie psuć stabilnej wersji demo.
 
@@ -9,12 +9,14 @@ Projekt jest obecnie rozwijany wizualnie i funkcjonalnie. Integracja z docelową
 - Dashboard z godziną, datą, wschodem i zachodem słońca.
 - Pogoda dla Warszawy oraz kompaktowa prognoza 5 dni.
 - Kalendarz miesięczny z polskimi świętami, zaznaczaniem dnia i własnymi wydarzeniami.
+- Plan dnia z fokusem, zadaniami z notatek, dzisiejszymi wydarzeniami i harmonogramem.
 - Aktualności RSS oraz osobna lista wiadomości o działaniach zbrojnych.
 - Rynki: złoto, waluty i krypto.
 - Przełączanie motywu: ciemny, jasny, systemowy.
 - Konfigurowalny sidebar: widoczność i kolejność paneli zapisywana lokalnie.
 - Profil, edycja profilu, ustawienia, centrum operacyjne i repository.
-- Lokalne notatki/zadania w centrum operacyjnym.
+- Lokalne notatki i zadania jako osobny panel.
+- Szybka nawigacja z topbara oraz zapamiętywanie ostatnio odwiedzanych widoków.
 
 ## Dane i tryb demo
 
@@ -29,7 +31,9 @@ Część ustawień użytkownika jest zapisywana w `localStorage`, między innymi
 
 - motyw,
 - konfiguracja sidebaru,
+- ostatnio odwiedzane widoki,
 - wydarzenia w kalendarzu,
+- fokus i harmonogram dnia,
 - notatki i zadania.
 
 Na ten moment aplikacja nie wymaga połączenia z bazą danych.
@@ -70,7 +74,9 @@ src/
 - `/dashboard` - główny pulpit.
 - `/news` - aktualności i działania zbrojne.
 - `/markets` - złoto, waluty, krypto.
-- `/operations` - centrum operacyjne, notatki i alerty.
+- `/day-plan` - fokus dnia, zadania i harmonogram.
+- `/notes` - lokalne notatki i zadania.
+- `/operations` - centrum operacyjne i alerty.
 - `/profile` - profil użytkownika.
 - `/profile/edit` - edycja profilu.
 - `/settings` - motyw i konfiguracja sidebaru.

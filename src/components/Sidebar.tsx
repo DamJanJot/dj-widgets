@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
-import { BookText, Info, LayoutDashboard, LineChart, ListTodo, Newspaper, RadioTower } from 'lucide-react'
+import { BookText, ClipboardList, Info, LayoutDashboard, LineChart, ListTodo, Newspaper, RadioTower } from 'lucide-react'
 import { useSidebarConfig, type SidebarItemId } from '@/hooks/use-sidebar-config'
 
 const icons: Record<SidebarItemId, typeof LayoutDashboard> = {
   dashboard: LayoutDashboard,
   news: Newspaper,
   markets: LineChart,
+  dayPlan: ClipboardList,
   docs: BookText,
   operations: RadioTower,
   notes: ListTodo,

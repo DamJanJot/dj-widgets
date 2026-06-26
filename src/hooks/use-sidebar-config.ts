@@ -4,6 +4,7 @@ export type SidebarItemId =
   | 'dashboard'
   | 'news'
   | 'markets'
+  | 'dayPlan'
   | 'docs'
   | 'operations'
   | 'notes'
@@ -26,6 +27,7 @@ export const sidebarItems: SidebarItemConfig[] = [
   { id: 'dashboard', label: 'Dashboard', path: '/dashboard' },
   { id: 'news', label: 'Aktualności', path: '/news' },
   { id: 'markets', label: 'Rynki', path: '/markets' },
+  { id: 'dayPlan', label: 'Plan dnia', path: '/day-plan' },
   { id: 'docs', label: 'Documentation', path: '/docs' },
   { id: 'operations', label: 'Centrum', path: '/operations' },
   { id: 'notes', label: 'Notatki i zadania', path: '/notes' },

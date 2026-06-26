@@ -11,6 +11,7 @@ const TITLE: Record<string, string> = {
   '/dashboard': 'Dashboard',
   '/news': 'Aktualności',
   '/markets': 'Rynki',
+  '/day-plan': 'Plan dnia',
   '/docs': 'Documentation',
   '/profile': 'Profil',
   '/profile/edit': 'Edytuj profil',

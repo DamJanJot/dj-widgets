@@ -1,6 +1,7 @@
 import {
   BookText,
   CalendarDays,
+  ClipboardList,
   LayoutDashboard,
   LineChart,
   ListTodo,
@@ -22,6 +23,7 @@ export const appCommands: AppCommand[] = [
   { label: 'Dashboard', path: '/dashboard', hint: 'Pogoda, kalendarz i centrum', icon: LayoutDashboard },
   { label: 'Aktualności', path: '/news', hint: 'RSS i działania zbrojne', icon: Newspaper },
   { label: 'Rynki', path: '/markets', hint: 'Złoto, waluty i krypto', icon: LineChart },
+  { label: 'Plan dnia', path: '/day-plan', hint: 'Fokus, zadania i harmonogram', icon: ClipboardList },
   { label: 'Notatki i zadania', path: '/notes', hint: 'Lokalna lista zadań', icon: ListTodo },
   { label: 'Centrum', path: '/operations', hint: 'Alerty i ostatnie działania', icon: RadioTower },
   { label: 'Profil', path: '/profile', hint: 'Informacje użytkownika', icon: User },

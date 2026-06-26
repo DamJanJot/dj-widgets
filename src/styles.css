@@ -709,7 +709,7 @@ body.sidebar-collapsed .link-text{display:none}
 
 .quick-actions{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
   gap:8px;
   margin-top:auto;
   padding-top:12px;
@@ -1516,6 +1516,187 @@ body.sidebar-collapsed .link-text{display:none}
   color:var(--text);
 }
 
+.day-plan-page{
+  max-height:calc(100vh - 88px);
+  overflow:hidden;
+}
+
+.day-plan-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+  gap:16px;
+}
+
+.day-card{
+  min-height:0;
+}
+
+.day-card-primary{
+  border-color:rgba(93,80,255,.65);
+}
+
+.day-focus-box{
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:8px;
+  background:var(--panel-soft);
+  margin-bottom:12px;
+}
+
+.day-focus-box svg{
+  color:#aebcff;
+}
+
+.day-focus-box label,
+.day-focus-box span{
+  display:block;
+  min-width:0;
+}
+
+.day-focus-box span{
+  color:var(--muted);
+  font-size:.78rem;
+  margin-bottom:6px;
+}
+
+.day-focus-box input,
+.day-slot-form input{
+  width:100%;
+  min-width:0;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;
+  background:var(--control-bg);
+  color:var(--text);
+  padding:10px 12px;
+  font:inherit;
+}
+
+.day-events{
+  display:grid;
+  gap:4px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:8px;
+  background:rgba(255,255,255,.02);
+}
+
+.day-events strong{
+  line-height:1.35;
+}
+
+.progress-track{
+  height:10px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  margin-bottom:12px;
+}
+
+.progress-track span{
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#22c55e,#7c8cff);
+}
+
+.day-task-list{
+  display:grid;
+  gap:8px;
+}
+
+.day-task{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  background:rgba(255,255,255,.02);
+}
+
+.day-task span{
+  flex:0 0 auto;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  margin-top:6px;
+  background:#fbbf24;
+  box-shadow:0 0 0 4px rgba(251,191,36,.12);
+}
+
+.day-task p{
+  margin:0;
+  min-width:0;
+  line-height:1.35;
+}
+
+.day-schedule-card{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.day-slot-form{
+  display:grid;
+  grid-template-columns:130px minmax(0,1fr) 44px;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.day-timeline{
+  display:grid;
+  gap:8px;
+  min-height:0;
+  overflow:auto;
+}
+
+.day-slot{
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr) 34px;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  background:rgba(255,255,255,.02);
+}
+
+.day-slot time{
+  color:#dfe4ff;
+  font-weight:800;
+  font-variant-numeric:tabular-nums;
+}
+
+.day-slot p,
+.day-slot-empty p{
+  margin:0;
+  min-width:0;
+}
+
+.day-slot-empty{
+  border:1px dashed rgba(255,255,255,.14);
+  border-radius:8px;
+  padding:14px;
+  color:var(--muted);
+}
+
+html.light .day-focus-box,
+html.light .day-events,
+html.light .day-task,
+html.light .day-slot,
+html.light .day-slot-empty{
+  border-color:rgba(15,23,42,.1);
+}
+
+html.light .day-slot time{
+  color:#1e293b;
+}
+
 html.light .widget,
 html.light .time-pill,
 html.light .weather-inline,
@@ -1611,6 +1792,7 @@ html.light .quick-actions a{
   .news-layout,
   .dashboard-grid,
   .dashboard-lower-grid,
+  .day-plan-grid,
   .profile-layout,
   .settings-layout,
   .operations-layout{
@@ -1618,9 +1800,13 @@ html.light .quick-actions a{
   }
 
   .timeline-list,
-  .quick-actions,
   .signal-grid{
     grid-template-columns:1fr;
+  }
+
+  .day-plan-page{
+    max-height:none;
+    overflow:visible;
   }
 }
 
@@ -1685,6 +1871,11 @@ html.light .quick-actions a{
   }
 
   .calendar-event-form{
+    grid-template-columns:1fr;
+  }
+
+  .day-slot-form,
+  .day-slot{
     grid-template-columns:1fr;
   }
 
