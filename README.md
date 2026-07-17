@@ -1,4 +1,4 @@
-# Orbitum Dashboard
+# Dashboard
 
 Panel webowy zbudowany w React, Vite i TypeScript. Aplikacja działa jako rozbudowany dashboard demo z widokami pogody, kalendarza, planu dnia, aktualności, rynków, profilu i ustawień.
 
@@ -103,7 +103,8 @@ Output directory: dist
 
 ## Status
 
-Projekt jest w fazie aktywnej rozbudowy. Aktualna wersja skupia się na warstwie UI/UX i stabilnym trybie demo. Integracja z backendem lub bazą danych może zostać dodana później jako osobny etap.
+<img width="1440" height="900" alt="image" src="https://github.com/user-attachments/assets/694de5e6-448d-4fb9-a9cc-ee6fe0a81fca" />
+
 
 ## Licencja
 
