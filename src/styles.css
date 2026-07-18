@@ -985,9 +985,16 @@ body.sidebar-collapsed .link-text{display:none}
   flex:0 0 auto;
 }
 
+.markets-watchlist-card{
+  flex:1 1 auto;
+  min-height:0;
+  overflow:hidden;
+}
+
 .gold-widget,
 .currency-widget,
-.crypto-widget{
+.crypto-widget,
+.market-watchlist{
   height:100%;
   display:flex;
   flex-direction:column;
@@ -1082,6 +1089,117 @@ body.sidebar-collapsed .link-text{display:none}
 
 .crypto-name{
   color:#d7def2;
+}
+
+.market-watchlist{
+  gap:12px;
+}
+
+.watchlist-form{
+  display:grid;
+  grid-template-columns:76px minmax(94px,1fr) minmax(94px,1fr) 108px 44px;
+  gap:8px;
+}
+
+.watchlist-form input,
+.watchlist-form select{
+  min-width:0;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;
+  background:var(--control-bg);
+  color:var(--text);
+  padding:9px 10px;
+  font:inherit;
+}
+
+.watchlist-note-input{
+  grid-column:1 / 5;
+}
+
+.watchlist-items{
+  display:grid;
+  gap:8px;
+  min-height:0;
+  overflow:auto;
+}
+
+.watchlist-item{
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr) minmax(86px,auto) 34px;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  background:rgba(255,255,255,.02);
+}
+
+.watchlist-item.high{
+  border-color:rgba(251,191,36,.35);
+  background:rgba(251,191,36,.045);
+}
+
+.watchlist-symbol{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:30px;
+  border-radius:6px;
+  background:rgba(124,140,255,.16);
+  color:#dfe4ff;
+  font-weight:800;
+  font-size:.76rem;
+}
+
+.watchlist-title-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+
+.watchlist-title-row strong{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.watchlist-title-row span{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  color:#fbbf24;
+  font-size:.74rem;
+  white-space:nowrap;
+}
+
+.watchlist-item p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:.82rem;
+  line-height:1.3;
+}
+
+.watchlist-target{
+  min-width:0;
+  text-align:right;
+}
+
+.watchlist-target span,
+.watchlist-target strong{
+  display:block;
+}
+
+.watchlist-target span{
+  color:var(--muted);
+  font-size:.72rem;
+}
+
+.watchlist-target strong{
+  font-size:.88rem;
+  white-space:nowrap;
 }
 
 .news-layout{
@@ -1710,7 +1828,8 @@ html.light .sidebar-sort-item,
 html.light .recent-view-item,
 html.light .recent-view-empty,
 html.light .forecast-item,
-html.light .crypto-list li{
+html.light .crypto-list li,
+html.light .watchlist-item{
   border-color:rgba(15,23,42,.1);
 }
 
@@ -1722,7 +1841,8 @@ html.light .weather-mini-grid span,
 html.light .quick-actions a,
 html.light .crypto-name,
 html.light .weather-main,
-html.light .coin-badge{
+html.light .coin-badge,
+html.light .watchlist-symbol{
   color:#1e293b;
 }
 
@@ -1890,6 +2010,25 @@ html.light .quick-actions a{
 
   .crypto-list li{
     grid-template-columns:48px 1fr;
+  }
+
+  .watchlist-form{
+    grid-template-columns:1fr;
+  }
+
+  .watchlist-note-input{
+    grid-column:auto;
+  }
+
+  .watchlist-item{
+    grid-template-columns:48px 1fr;
+  }
+
+  .watchlist-target,
+  .watchlist-item .btn-icon{
+    grid-column:2;
+    justify-self:start;
+    text-align:left;
   }
 
   .crypto-list li strong,

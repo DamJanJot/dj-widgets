@@ -12,6 +12,7 @@ Projekt jest obecnie rozwijany wizualnie i funkcjonalnie. Integracja z docelową
 - Plan dnia z fokusem, zadaniami z notatek, dzisiejszymi wydarzeniami i harmonogramem.
 - Aktualności RSS oraz osobna lista wiadomości o działaniach zbrojnych.
 - Rynki: złoto, waluty i krypto.
+- Obserwowane aktywa z progami, priorytetami i notatkami.
 - Przełączanie motywu: ciemny, jasny, systemowy.
 - Konfigurowalny sidebar: widoczność i kolejność paneli zapisywana lokalnie.
 - Profil, edycja profilu, ustawienia, centrum operacyjne i repository.
@@ -34,6 +35,7 @@ Część ustawień użytkownika jest zapisywana w `localStorage`, między innymi
 - ostatnio odwiedzane widoki,
 - wydarzenia w kalendarzu,
 - fokus i harmonogram dnia,
+- lista obserwowanych aktywów,
 - notatki i zadania.
 
 Na ten moment aplikacja nie wymaga połączenia z bazą danych.

@@ -1,6 +1,7 @@
 import GoldHistoryWidget from '@/components/gold-history-widget'
 import CurrencyDashboard from '@/components/currency-dashboard'
 import CryptoWidget from '@/components/crypto-widget'
+import MarketWatchlist from '@/components/MarketWatchlist'
 
 export default function Markets() {
   return (
@@ -19,6 +20,10 @@ export default function Markets() {
 
           <div className="card markets-crypto-card">
             <CryptoWidget />
+          </div>
+
+          <div className="card markets-watchlist-card">
+            <MarketWatchlist />
           </div>
         </div>
       </div>
