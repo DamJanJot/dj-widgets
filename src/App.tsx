@@ -12,6 +12,7 @@ import Repository from './pages/Repository'
 import Operations from './pages/Operations'
 import Notes from './pages/Notes'
 import DayPlan from './pages/DayPlan'
+import Projects from './pages/Projects'
 import RouteMemory from './components/RouteMemory'
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/operations" element={<Operations />} />
             <Route path="/notes" element={<Notes />} />
             <Route path="/day-plan" element={<DayPlan />} />
+            <Route path="/projects" element={<Projects />} />
           </Routes>
         </div>
       </div>

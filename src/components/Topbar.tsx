@@ -12,6 +12,7 @@ const TITLE: Record<string, string> = {
   '/news': 'Aktualności',
   '/markets': 'Rynki',
   '/day-plan': 'Plan dnia',
+  '/projects': 'Projekty',
   '/docs': 'Documentation',
   '/profile': 'Profil',
   '/profile/edit': 'Edytuj profil',

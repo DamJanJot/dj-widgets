@@ -10,6 +10,7 @@ Projekt jest obecnie rozwijany wizualnie i funkcjonalnie. Integracja z docelową
 - Pogoda dla Warszawy oraz kompaktowa prognoza 5 dni.
 - Kalendarz miesięczny z polskimi świętami, zaznaczaniem dnia i własnymi wydarzeniami.
 - Plan dnia z fokusem, zadaniami z notatek, dzisiejszymi wydarzeniami i harmonogramem.
+- Panel projektów z mapą modułów, statusem prac i przypiętymi priorytetami.
 - Aktualności RSS oraz osobna lista wiadomości o działaniach zbrojnych.
 - Rynki: złoto, waluty i krypto.
 - Obserwowane aktywa z progami, priorytetami i notatkami.
@@ -77,6 +78,7 @@ src/
 - `/news` - aktualności i działania zbrojne.
 - `/markets` - złoto, waluty, krypto.
 - `/day-plan` - fokus dnia, zadania i harmonogram.
+- `/projects` - mapa modułów, priorytety i kierunek integracji.
 - `/notes` - lokalne notatki i zadania.
 - `/operations` - centrum operacyjne i alerty.
 - `/profile` - profil użytkownika.

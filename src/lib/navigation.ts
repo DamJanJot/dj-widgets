@@ -1,5 +1,6 @@
 import {
   BookText,
+  BriefcaseBusiness,
   CalendarDays,
   ClipboardList,
   LayoutDashboard,
@@ -24,6 +25,7 @@ export const appCommands: AppCommand[] = [
   { label: 'Aktualności', path: '/news', hint: 'RSS i działania zbrojne', icon: Newspaper },
   { label: 'Rynki', path: '/markets', hint: 'Złoto, waluty i krypto', icon: LineChart },
   { label: 'Plan dnia', path: '/day-plan', hint: 'Fokus, zadania i harmonogram', icon: ClipboardList },
+  { label: 'Projekty', path: '/projects', hint: 'Mapa modułów i priorytetów', icon: BriefcaseBusiness },
   { label: 'Notatki i zadania', path: '/notes', hint: 'Lokalna lista zadań', icon: ListTodo },
   { label: 'Centrum', path: '/operations', hint: 'Alerty i ostatnie działania', icon: RadioTower },
   { label: 'Profil', path: '/profile', hint: 'Informacje użytkownika', icon: User },
