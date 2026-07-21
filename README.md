@@ -1,6 +1,6 @@
-# Dashboard
+# Orbitum
 
-Panel webowy zbudowany w React, Vite i TypeScript. Aplikacja działa jako rozbudowany dashboard demo z widokami pogody, kalendarza, planu dnia, aktualności, rynków, profilu i ustawień.
+Panel webowy zbudowany w React, Vite i TypeScript. Aplikacja rozwija się w kierunku docelowego centrum operacyjnego Orbitum: dashboardu dla pogody, kalendarza, planu dnia, rynków, aktualności, projektów i przyszłej architektury modułów.
 
 Projekt jest obecnie rozwijany wizualnie i funkcjonalnie. Integracja z docelową bazą danych jest świadomie odłożona, żeby nie psuć stabilnej wersji demo.
 
@@ -12,10 +12,12 @@ Projekt jest obecnie rozwijany wizualnie i funkcjonalnie. Integracja z docelową
 - Plan dnia z fokusem, zadaniami z notatek, dzisiejszymi wydarzeniami i harmonogramem.
 - Panel projektów z mapą modułów, statusem prac i przypiętymi priorytetami.
 - Aktualności RSS oraz osobna lista wiadomości o działaniach zbrojnych.
-- Rynki: złoto, waluty i krypto.
-- Obserwowane aktywa z progami, priorytetami i notatkami.
+- Rynki: złoto, waluty, krypto i obserwowane aktywa.
 - Przełączanie motywu: ciemny, jasny, systemowy.
 - Konfigurowalny sidebar: widoczność i kolejność paneli zapisywana lokalnie.
+- Własne tooltipy w zwiniętym sidebarze.
+- Pływający przycisk szybkich akcji Orbitum w prawym dolnym rogu.
+- Menu kontekstowe po prawym kliknięciu jako baza pod przyszłe akcje.
 - Profil, edycja profilu, ustawienia, centrum operacyjne i repository.
 - Lokalne notatki i zadania jako osobny panel.
 - Szybka nawigacja z topbara oraz zapamiętywanie ostatnio odwiedzanych widoków.
@@ -61,22 +63,11 @@ npm run build
 npm run preview
 ```
 
-## Struktura projektu
-
-```text
-src/
-  components/     Widgety i elementy UI
-  hooks/          Hooki aplikacji, np. motyw i konfiguracja sidebaru
-  pages/          Widoki aplikacji
-  api/            Klient API
-  services/       Dane pomocnicze/mock
-```
-
 ## Najważniejsze widoki
 
 - `/dashboard` - główny pulpit.
 - `/news` - aktualności i działania zbrojne.
-- `/markets` - złoto, waluty, krypto.
+- `/markets` - złoto, waluty, krypto i obserwowane aktywa.
 - `/day-plan` - fokus dnia, zadania i harmonogram.
 - `/projects` - mapa modułów, priorytety i kierunek integracji.
 - `/notes` - lokalne notatki i zadania.
@@ -104,11 +95,6 @@ Output directory: dist
 - Recharts
 - Lucide React
 - Radix UI
-
-## Status
-
-<img width="1440" height="900" alt="image" src="https://github.com/user-attachments/assets/694de5e6-448d-4fb9-a9cc-ee6fe0a81fca" />
-
 
 ## Licencja
 

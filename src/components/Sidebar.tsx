@@ -23,7 +23,7 @@ export default function Sidebar() {
   return (
     <aside className="sidebar" id="sidebar">
       <div className="brand">
-        <img src="/app-logo.svg" alt="Logo Orbitum" className="brand-logo" />
+        <img src="/android-chrome-192x192.png" alt="Logo Orbitum" className="brand-logo" />
         <span className="brand-name">Orbitum</span>
       </div>
 
@@ -31,7 +31,7 @@ export default function Sidebar() {
         {topItems.map((item) => {
           const Icon = icons[item.id]
           return (
-            <NavLink to={item.path} title={item.label} className="nav-item" key={item.id}>
+            <NavLink to={item.path} aria-label={item.label} data-tooltip={item.label} className="nav-item" key={item.id}>
               <Icon className="nav-icon" size={18} />
               <span className="link-text">{item.label}</span>
             </NavLink>
@@ -44,7 +44,7 @@ export default function Sidebar() {
           {footerItems.map((item) => {
             const Icon = icons[item.id]
             return (
-              <NavLink to={item.path} title={item.label} className="nav-item" key={item.id}>
+              <NavLink to={item.path} aria-label={item.label} data-tooltip={item.label} className="nav-item" key={item.id}>
                 <Icon className="nav-icon" size={18} />
                 <span className="link-text">{item.label}</span>
               </NavLink>

@@ -14,6 +14,8 @@ import Notes from './pages/Notes'
 import DayPlan from './pages/DayPlan'
 import Projects from './pages/Projects'
 import RouteMemory from './components/RouteMemory'
+import FloatingOrbitumButton from './components/FloatingOrbitumButton'
+import OrbitumContextMenu from './components/OrbitumContextMenu'
 
 export default function App() {
   return (
@@ -41,6 +43,8 @@ export default function App() {
           </Routes>
         </div>
       </div>
+      <FloatingOrbitumButton />
+      <OrbitumContextMenu />
     </div>
   )
 }
