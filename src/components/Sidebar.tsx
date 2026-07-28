@@ -20,6 +20,12 @@ export default function Sidebar() {
   const footerItems = visibleItems.filter((item) => item.id === 'repo' || item.id === 'info')
   const topItems = visibleItems.filter((item) => item.id !== 'repo' && item.id !== 'info')
 
+  const closeMobileSidebar = () => {
+    if (!window.matchMedia('(max-width: 900px)').matches) return
+    document.getElementById('sidebar')?.classList.remove('open')
+    window.dispatchEvent(new Event('orbitum-sidebar-close'))
+  }
+
   return (
     <aside className="sidebar" id="sidebar">
       <div className="brand">
@@ -31,7 +37,7 @@ export default function Sidebar() {
         {topItems.map((item) => {
           const Icon = icons[item.id]
           return (
-            <NavLink to={item.path} aria-label={item.label} data-tooltip={item.label} className="nav-item" key={item.id}>
+            <NavLink to={item.path} aria-label={item.label} data-tooltip={item.label} className="nav-item" key={item.id} onClick={closeMobileSidebar}>
               <Icon className="nav-icon" size={18} />
               <span className="link-text">{item.label}</span>
             </NavLink>
@@ -44,7 +50,7 @@ export default function Sidebar() {
           {footerItems.map((item) => {
             const Icon = icons[item.id]
             return (
-              <NavLink to={item.path} aria-label={item.label} data-tooltip={item.label} className="nav-item" key={item.id}>
+              <NavLink to={item.path} aria-label={item.label} data-tooltip={item.label} className="nav-item" key={item.id} onClick={closeMobileSidebar}>
                 <Icon className="nav-icon" size={18} />
                 <span className="link-text">{item.label}</span>
               </NavLink>

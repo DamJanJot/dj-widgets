@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Bell, ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import UserMenuContent from './user-menu-content'
@@ -40,27 +40,65 @@ export default function Topbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [notifOpen, setNotifOpen] = useState(false)
   const [commandOpen, setCommandOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(window.scrollY > 8)
   const wrapRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    const mq = window.matchMedia(MQ_MOBILE)
-    const h = (e: MediaQueryListEvent) => setIsMobile(e.matches)
-    setIsMobile(mq.matches)
-    mq.addEventListener('change', h)
-    return () => mq.removeEventListener('change', h)
+  const closeSidebar = useCallback(() => {
+    document.getElementById('sidebar')?.classList.remove('open')
+    setMobileOpen(false)
   }, [])
 
   useEffect(() => {
-    const onDoc = (e: MouseEvent) => {
+    const mq = window.matchMedia(MQ_MOBILE)
+    const handleChange = (event: MediaQueryListEvent) => setIsMobile(event.matches)
+    setIsMobile(mq.matches)
+    mq.addEventListener('change', handleChange)
+    return () => mq.removeEventListener('change', handleChange)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const syncClosed = () => closeSidebar()
+    window.addEventListener('orbitum-sidebar-close', syncClosed)
+    return () => window.removeEventListener('orbitum-sidebar-close', syncClosed)
+  }, [closeSidebar])
+
+  useEffect(() => {
+    const onDoc = (event: MouseEvent) => {
       if (!wrapRef.current) return
-      if (!wrapRef.current.contains(e.target as Node)) {
+      if (!wrapRef.current.contains(event.target as Node)) {
         setMenuOpen(false)
         setNotifOpen(false)
       }
     }
+
     document.addEventListener('mousedown', onDoc)
     return () => document.removeEventListener('mousedown', onDoc)
   }, [])
+
+  useEffect(() => {
+    if (!isMobile || !mobileOpen) return
+
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as HTMLElement | null
+      if (!target) return
+      if (target.closest('#sidebar') || target.closest('[data-sidebar-toggle="true"]')) return
+      closeSidebar()
+    }
+
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => document.removeEventListener('pointerdown', onPointerDown)
+  }, [closeSidebar, isMobile, mobileOpen])
+
+  useEffect(() => {
+    if (isMobile) closeSidebar()
+  }, [closeSidebar, loc.pathname, isMobile])
 
   const toggleSidebar = () => {
     const el = document.getElementById('sidebar')
@@ -88,11 +126,18 @@ export default function Topbar() {
 
   return (
     <>
-      {isMobile && mobileOpen && <div className="scrim show" onClick={toggleSidebar} />}
+      {isMobile && mobileOpen && <div className="scrim show" onClick={closeSidebar} />}
 
-      <header className="topbar grid3" style={headerStyle}>
+      <header className={`topbar grid3 ${scrolled ? 'is-scrolled' : ''}`} style={headerStyle}>
         <div className="tb-left">
-          <button className="btn-icon" aria-label="Przełącz nawigację" onClick={toggleSidebar} title="Pokaż/ukryj nawigację" style={arrowStyle}>
+          <button
+            className="btn-icon"
+            data-sidebar-toggle="true"
+            aria-label="Przełącz nawigację"
+            onClick={toggleSidebar}
+            title="Pokaż/ukryj nawigację"
+            style={arrowStyle}
+          >
             {ArrowIcon}
           </button>
         </div>
@@ -100,11 +145,16 @@ export default function Topbar() {
         <div className="tb-center">{title}</div>
 
         <div className="tb-right" ref={wrapRef}>
-          <button className="btn-icon topbar-search" aria-label="Szybka nawigacja" title="Szybka nawigacja" onClick={() => { setCommandOpen(true); setMenuOpen(false); setNotifOpen(false) }}>
+          <button
+            className="btn-icon topbar-search"
+            aria-label="Szybka nawigacja"
+            title="Szybka nawigacja"
+            onClick={() => { setCommandOpen(true); setMenuOpen(false); setNotifOpen(false) }}
+          >
             <Search size={18} />
           </button>
 
-          <button className="btn-icon" aria-label="Powiadomienia" onClick={() => { setNotifOpen(v => !v); setMenuOpen(false) }}>
+          <button className="btn-icon" aria-label="Powiadomienia" onClick={() => { setNotifOpen((value) => !value); setMenuOpen(false) }}>
             <Bell size={18} />
           </button>
 
@@ -119,7 +169,7 @@ export default function Topbar() {
           )}
 
           <div className="avatar-wrap">
-            <button className="avatar" aria-label="Profil użytkownika" onClick={() => { setMenuOpen(v => !v); setNotifOpen(false) }}>
+            <button className="avatar" aria-label="Profil użytkownika" onClick={() => { setMenuOpen((value) => !value); setNotifOpen(false) }}>
               <span className="avatar-initials" aria-hidden="true">{initials}</span>
             </button>
             {menuOpen && (

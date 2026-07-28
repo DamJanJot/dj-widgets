@@ -107,6 +107,18 @@ body.sidebar-collapsed .nav-item[data-tooltip]:focus-visible::before{
   height:56px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;
   padding:0 12px;background:var(--topbar);
   position:sticky; top:0; z-index:1200;
+  transition:background .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.topbar.is-scrolled{
+  background:rgba(7,15,29,.96);
+  border-color:rgba(148,163,184,.14);
+  box-shadow:0 12px 30px rgba(2,6,23,.35);
+  backdrop-filter:blur(12px);
+}
+html.light .topbar.is-scrolled{
+  background:rgba(248,250,252,.96);
+  border-color:rgba(15,23,42,.12);
+  box-shadow:0 12px 30px rgba(15,23,42,.12);
 }
 .topbar.grid3{
   display:grid;
@@ -355,6 +367,13 @@ body.sidebar-collapsed .nav-item[data-tooltip]:focus-visible::before{
   body.sidebar-collapsed .layout{grid-template-columns:1fr}
   .sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sidebar-w);z-index:1000;transform:translateX(-100%);overflow:hidden}
   .sidebar.open{transform:translateX(0)}
+  .topbar{
+    background:rgba(7,15,29,.96);
+    backdrop-filter:blur(12px);
+  }
+  html.light .topbar{
+    background:rgba(248,250,252,.96);
+  }
   body.sidebar-collapsed .nav-item{justify-content:flex-start}
   body.sidebar-collapsed .brand-name, body.sidebar-collapsed .link-text{display:inline}
   body.sidebar-collapsed .nav-item[data-tooltip]::before,
