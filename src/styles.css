@@ -2241,25 +2241,55 @@ html.light .topbar.is-scrolled{
   overflow:hidden;
 }
 
-.paint-hero{
+.paint-workspace-head{
   display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:18px;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  gap:14px;
   align-items:center;
   border-color:rgba(93,80,255,.65);
 }
 
-.paint-hero h2{
+.paint-workspace-head h2{
   margin:4px 0 8px;
   font-size:24px;
   line-height:1.2;
 }
 
-.paint-hero p{
+.paint-workspace-head p{
   margin:0;
-  max-width:840px;
+  max-width:640px;
   color:var(--muted);
   line-height:1.45;
+}
+
+.paint-board-tabs{
+  display:flex;
+  gap:6px;
+  padding:4px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:8px;
+  background:var(--panel-soft);
+}
+
+.paint-board-tabs button{
+  border:0;
+  border-radius:6px;
+  padding:8px 10px;
+  background:transparent;
+  color:var(--muted);
+  font:inherit;
+  font-size:.86rem;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.paint-board-tabs button.active{
+  color:#fff;
+  background:var(--accent);
+}
+
+.paint-new-board{
+  white-space:nowrap;
 }
 
 .paint-layout{
@@ -2627,14 +2657,24 @@ html.light .quick-actions a{
 
   .projects-hero,
   .projects-layout,
-  .paint-hero,
+  .paint-workspace-head,
   .paint-layout{
     grid-template-columns:1fr;
   }
 
   .projects-hero-metrics,
-  .project-card-grid{
+  .project-card-grid,
+  .paint-board-tabs,
+  .paint-schema-list{
     grid-template-columns:1fr;
+  }
+
+  .paint-board-tabs{
+    display:grid;
+  }
+
+  .paint-new-board{
+    width:100%;
   }
 }
 

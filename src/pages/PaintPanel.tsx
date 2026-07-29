@@ -5,11 +5,11 @@ import {
   Database,
   Eraser,
   FileImage,
-  GitBranch,
   ImagePlus,
   Layers3,
   Link2,
   MousePointer2,
+  Plus,
   Pencil,
   Save,
   StickyNote,
@@ -43,18 +43,23 @@ export default function PaintPanel() {
     <section className="page-shell paint-page">
       <h1 className="page-title">Paint</h1>
 
-      <div className="paint-hero card">
+      <div className="paint-workspace-head card">
         <div>
-          <span className="muted small">DamJanJot/paint</span>
-          <h2>Whiteboard jako moduł Orbitum</h2>
+          <span className="muted small">Aktywny projekt</span>
+          <h2>Orbitum Flow</h2>
           <p>
-            Panel oparty o repo Paint: projekty, tablice, rysowanie, notatki, obrazy, połączenia i autozapis. Na razie to widok integracyjny, gotowy pod późniejsze spięcie z backendem.
+            Tablica robocza do szkiców interfejsu, notatek i połączeń między elementami projektu.
           </p>
         </div>
-        <a className="button-like primary" href="https://github.com/DamJanJot/paint" target="_blank" rel="noreferrer">
-          <GitBranch size={17} />
-          Repo Paint
-        </a>
+        <div className="paint-board-tabs" aria-label="Tablice projektu">
+          <button className="active" type="button">Główna tablica</button>
+          <button type="button">UI szkice</button>
+          <button type="button">Backend</button>
+        </div>
+        <button className="button-like primary paint-new-board" type="button">
+          <Plus size={17} />
+          Nowa tablica
+        </button>
       </div>
 
       <div className="paint-layout">
