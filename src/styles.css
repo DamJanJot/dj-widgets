@@ -739,6 +739,20 @@ html.light .topbar.is-scrolled{
   border-color:rgba(93,80,255,.65);
 }
 
+.dashboard-weather-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.dashboard-weather-actions .button-like{
+  padding:7px 10px;
+  color:var(--text);
+  font-size:.84rem;
+  white-space:nowrap;
+}
+
 .clock-strip{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
@@ -2783,5 +2797,46 @@ html.light .quick-actions a{
   .crypto-list li .up,
   .crypto-list li .down{
     grid-column:2;
+  }
+
+  .dashboard-weather-actions{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .dashboard-weather-actions .button-like{
+    width:100%;
+  }
+
+  .dashboard-clock-card .clock-strip{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    order:3;
+  }
+
+  .dashboard-clock-card .time-pill{
+    padding:10px;
+  }
+
+  .markets-currency-card .currency-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+
+  .markets-currency-card .compact-stat{
+    min-height:64px;
+    padding:9px 12px;
+  }
+
+  .markets-currency-card .compact-stat .label{
+    margin-bottom:4px;
+  }
+
+  .markets-currency-card .compact-stat .value{
+    font-size:1.05rem;
+  }
+
+  .markets-currency-card .currency-chart-wrap{
+    min-height:180px;
   }
 }
