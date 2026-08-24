@@ -31,7 +31,7 @@ export const appCommands: AppCommand[] = [
   { label: 'Notatki i zadania', path: '/notes', hint: 'Lokalna lista zadań', icon: ListTodo },
   { label: 'Centrum', path: '/operations', hint: 'Alerty i ostatnie działania', icon: RadioTower },
   { label: 'Profil', path: '/profile', hint: 'Informacje użytkownika', icon: User },
-  { label: 'Ustawienia', path: '/settings', hint: 'Motyw i sidebar', icon: Settings },
+  { label: 'Ustawienia', path: '/settings', hint: 'Motyw, sidebar i skróty', icon: Settings },
   { label: 'Documentation', path: '/docs', hint: 'Opis modułów', icon: BookText },
   { label: 'Kalendarz', path: '/dashboard', hint: 'Święta i wydarzenia', icon: CalendarDays },
 ]

@@ -17,6 +17,7 @@ import PaintPanel from './pages/PaintPanel'
 import RouteMemory from './components/RouteMemory'
 import FloatingOrbitumButton from './components/FloatingOrbitumButton'
 import OrbitumContextMenu from './components/OrbitumContextMenu'
+import GlobalKeyboardShortcuts from './components/GlobalKeyboardShortcuts'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       <Sidebar />
       <div className="main">
         <RouteMemory />
+        <GlobalKeyboardShortcuts />
         <Topbar />
         <div className="content">
           <Routes>

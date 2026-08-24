@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, X } from 'lucide-react'
+import { useShortcutConfig } from '@/hooks/use-keyboard-shortcuts'
 import { appCommands, getCommandByPath, readRecentViews, rememberView } from '@/lib/navigation'
 
 type Props = {
@@ -12,6 +13,7 @@ export default function CommandPalette({ open, onOpenChange }: Props) {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
   const [recentPaths, setRecentPaths] = useState<string[]>(() => readRecentViews())
+  const { commandShortcuts } = useShortcutConfig()
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -45,6 +47,10 @@ export default function CommandPalette({ open, onOpenChange }: Props) {
     [recentPaths]
   )
 
+  const shortcutByPath = useMemo(() => new Map(
+    commandShortcuts.map((item) => [item.command.path, item.shortcut])
+  ), [commandShortcuts])
+
   const run = (path: string) => {
     rememberView(path)
     navigate(path)
@@ -75,6 +81,7 @@ export default function CommandPalette({ open, onOpenChange }: Props) {
                   <strong>{command.label}</strong>
                   <small>{command.hint}</small>
                 </span>
+                {shortcutByPath.get(command.path) && <kbd>{shortcutByPath.get(command.path)}</kbd>}
               </button>
             ))}
           </div>
@@ -89,6 +96,7 @@ export default function CommandPalette({ open, onOpenChange }: Props) {
                 <strong>{command.label}</strong>
                 <small>{command.hint}</small>
               </span>
+              {shortcutByPath.get(command.path) && <kbd>{shortcutByPath.get(command.path)}</kbd>}
             </button>
           ))}
           {!filtered.length && <p className="muted command-empty">Brak wyników</p>}
