@@ -1193,11 +1193,15 @@ html.light .topbar.is-scrolled{
 .markets-layout{
   flex:1;
   min-height:0;
-  grid-template-columns:minmax(0,1.35fr) minmax(360px,.85fr);
+  grid-template-columns:minmax(0,1.25fr) minmax(420px,.8fr);
+  grid-template-rows:minmax(0,1fr) auto;
 }
 
 .markets-column{
   min-height:0;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr);
+  gap:12px;
 }
 
 .markets-gold-card,
@@ -1211,22 +1215,45 @@ html.light .topbar.is-scrolled{
   display:flex;
 }
 
+.markets-gold-card{
+  grid-row:1;
+}
+
 .markets-gold-card > .gold-widget{
   flex:1;
 }
 
+.markets-panel-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.markets-panel-actions .button-like{
+  padding:8px 10px;
+  color:var(--text);
+  font-size:.86rem;
+  white-space:nowrap;
+}
+
 .markets-currency-card{
-  flex:1 1 auto;
+  display:flex;
+  min-height:0;
 }
 
 .markets-crypto-card{
   flex:0 0 auto;
 }
 
+.markets-crypto-bottom{
+  grid-column:1 / -1;
+}
+
 .markets-watchlist-card{
   flex:1 1 auto;
   min-height:0;
-  overflow:hidden;
+  overflow:visible;
 }
 
 .gold-widget,
@@ -1289,8 +1316,29 @@ html.light .topbar.is-scrolled{
 
 .currency-chart-wrap{
   flex:1;
-  min-height:150px;
+  min-height:260px;
   height:auto;
+}
+
+.markets-currency-card .currency-widget{
+  flex:1;
+  min-height:0;
+}
+
+.markets-currency-card .currency-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+.markets-currency-card .compact-stat{
+  min-height:64px;
+}
+
+.markets-currency-card .currency-chart-wrap{
+  min-height:300px;
+}
+
+.markets-crypto-bottom .crypto-list{
+  grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
 .crypto-list{
@@ -1331,6 +1379,80 @@ html.light .topbar.is-scrolled{
 
 .market-watchlist{
   gap:12px;
+}
+
+.market-watchlist-drawer{
+  position:fixed;
+  inset:0;
+  z-index:2100;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.market-watchlist-backdrop{
+  position:absolute;
+  inset:0;
+  border:0;
+  background:rgba(2,6,23,.48);
+  cursor:pointer;
+}
+
+.market-watchlist-panel{
+  position:relative;
+  z-index:1;
+  width:min(560px,calc(100vw - 24px));
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:16px;
+  border-left:1px solid rgba(124,140,255,.28);
+  background:var(--bg);
+  box-shadow:-18px 0 50px rgba(2,6,23,.38);
+}
+
+.market-watchlist-panel-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  background:var(--panel);
+}
+
+.market-watchlist-panel-header strong,
+.market-watchlist-panel-header span{
+  display:block;
+}
+
+.market-watchlist-panel-header span{
+  color:var(--muted);
+  font-size:.84rem;
+  margin-top:3px;
+}
+
+.market-watchlist-panel .markets-watchlist-card{
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+}
+
+.market-watchlist-panel .market-watchlist{
+  min-height:0;
+}
+
+.market-watchlist-hint{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--muted);
+  font-size:.84rem;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  background:var(--panel);
 }
 
 .watchlist-form{
@@ -2730,6 +2852,14 @@ html.light .quick-actions a{
     grid-template-columns:1fr;
   }
 
+  .markets-layout{
+    grid-template-rows:auto;
+  }
+
+  .markets-column{
+    min-height:420px;
+  }
+
   .timeline-list,
   .signal-grid{
     grid-template-columns:1fr;
@@ -2867,6 +2997,15 @@ html.light .quick-actions a{
 
   .crypto-list li{
     grid-template-columns:48px 1fr;
+  }
+
+  .markets-crypto-bottom .crypto-list{
+    grid-template-columns:1fr;
+  }
+
+  .market-watchlist-panel{
+    width:100%;
+    padding:12px;
   }
 
   .watchlist-form{
