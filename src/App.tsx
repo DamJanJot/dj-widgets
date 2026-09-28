@@ -14,6 +14,7 @@ import Notes from './pages/Notes'
 import DayPlan from './pages/DayPlan'
 import Projects from './pages/Projects'
 import PaintPanel from './pages/PaintPanel'
+import Apps from './pages/Apps'
 import RouteMemory from './components/RouteMemory'
 import FloatingOrbitumButton from './components/FloatingOrbitumButton'
 import OrbitumContextMenu from './components/OrbitumContextMenu'
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/day-plan" element={<DayPlan />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/paint" element={<PaintPanel />} />
+            <Route path="/apps" element={<Apps />} />
           </Routes>
         </div>
       </div>

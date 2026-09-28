@@ -18,8 +18,9 @@ export const defaultShortcuts: ShortcutConfig[] = [
   { path: '/markets', keys: 'Ctrl+3' },
   { path: '/day-plan', keys: 'Ctrl+4' },
   { path: '/projects', keys: 'Ctrl+5' },
-  { path: '/paint', keys: 'Ctrl+6' },
-  { path: '/notes', keys: 'Ctrl+7' },
+  { path: '/apps', keys: 'Ctrl+6' },
+  { path: '/paint', keys: 'Ctrl+7' },
+  { path: '/notes', keys: 'Ctrl+8' },
   { path: '/settings', keys: 'Ctrl+,' },
 ]
 

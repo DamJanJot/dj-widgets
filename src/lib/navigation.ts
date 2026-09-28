@@ -1,4 +1,5 @@
 import {
+  AppWindow,
   BookText,
   BriefcaseBusiness,
   CalendarDays,
@@ -27,6 +28,7 @@ export const appCommands: AppCommand[] = [
   { label: 'Rynki', path: '/markets', hint: 'Złoto, waluty i krypto', icon: LineChart },
   { label: 'Plan dnia', path: '/day-plan', hint: 'Fokus, zadania i harmonogram', icon: ClipboardList },
   { label: 'Projekty', path: '/projects', hint: 'Mapa modułów i priorytetów', icon: BriefcaseBusiness },
+  { label: 'Aplikacje', path: '/apps', hint: 'Moduły z Mobilka/Optivio', icon: AppWindow },
   { label: 'Paint', path: '/paint', hint: 'Whiteboard, tablice i notatki', icon: Paintbrush },
   { label: 'Notatki i zadania', path: '/notes', hint: 'Lokalna lista zadań', icon: ListTodo },
   { label: 'Centrum', path: '/operations', hint: 'Alerty i ostatnie działania', icon: RadioTower },

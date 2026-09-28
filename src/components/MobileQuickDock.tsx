@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import { BriefcaseBusiness, ClipboardList, LayoutDashboard, LineChart, ListTodo, Newspaper } from 'lucide-react'
+import { AppWindow, BriefcaseBusiness, ClipboardList, LayoutDashboard, LineChart, Newspaper } from 'lucide-react'
 import { useSidebarConfig, type SidebarItemId } from '@/hooks/use-sidebar-config'
 
-const dockItems: SidebarItemId[] = ['dashboard', 'news', 'markets', 'dayPlan', 'projects', 'notes']
+const dockItems: SidebarItemId[] = ['dashboard', 'markets', 'dayPlan', 'projects', 'apps']
 
 const icons: Partial<Record<SidebarItemId, typeof LayoutDashboard>> = {
   dashboard: LayoutDashboard,
@@ -10,7 +10,7 @@ const icons: Partial<Record<SidebarItemId, typeof LayoutDashboard>> = {
   markets: LineChart,
   dayPlan: ClipboardList,
   projects: BriefcaseBusiness,
-  notes: ListTodo,
+  apps: AppWindow,
 }
 
 export default function MobileQuickDock() {

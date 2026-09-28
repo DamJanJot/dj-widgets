@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { BookText, BriefcaseBusiness, ClipboardList, Info, LayoutDashboard, LineChart, ListTodo, Newspaper, Paintbrush, RadioTower } from 'lucide-react'
+import { AppWindow, BookText, BriefcaseBusiness, ClipboardList, Info, LayoutDashboard, LineChart, ListTodo, Newspaper, Paintbrush, RadioTower } from 'lucide-react'
 import { useSidebarConfig, type SidebarItemId } from '@/hooks/use-sidebar-config'
 
 const icons: Record<SidebarItemId, typeof LayoutDashboard> = {
@@ -8,6 +8,7 @@ const icons: Record<SidebarItemId, typeof LayoutDashboard> = {
   markets: LineChart,
   dayPlan: ClipboardList,
   projects: BriefcaseBusiness,
+  apps: AppWindow,
   paint: Paintbrush,
   docs: BookText,
   operations: RadioTower,
