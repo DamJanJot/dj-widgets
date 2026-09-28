@@ -18,6 +18,7 @@ import RouteMemory from './components/RouteMemory'
 import FloatingOrbitumButton from './components/FloatingOrbitumButton'
 import OrbitumContextMenu from './components/OrbitumContextMenu'
 import GlobalKeyboardShortcuts from './components/GlobalKeyboardShortcuts'
+import MobileQuickDock from './components/MobileQuickDock'
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
         </div>
       </div>
       <FloatingOrbitumButton />
+      <MobileQuickDock />
       <OrbitumContextMenu />
     </div>
   )
